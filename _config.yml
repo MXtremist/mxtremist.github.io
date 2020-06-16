@@ -73,7 +73,7 @@ footer-text: Copyright (c) 2020 啦啦啦
 #
 
 # 输入Disqus shortname，即可添加评论区
-disqus: loffer #shortname
+disqus: loffer-1 #shortname
 
 # 输入Gitalk相关设定，即可添加评论区，具体请看教程
 gitalk:
