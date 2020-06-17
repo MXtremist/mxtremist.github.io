@@ -49,7 +49,7 @@ excerpt_separator: <!-- more -->
 
 # 你的社交网络链接，它们会作为图标出现在你的网站页脚中，可选填写
 footer-links: 
-  weibo: #请输入你的微博个性域名 https://www.weibo.com/<thispart>
+  weibo: 5718430861 #请输入你的微博个性域名 https://www.weibo.com/<thispart>
   behance: # https://www.behance.net/<>
   dribbble: # https://dribbble.com/<>
   email: xue.fyang@foxmail.com 
@@ -59,12 +59,12 @@ footer-links:
   instagram: #https://instagram.com/<>
   linkedin: #https://www.linkedin.com/in/<>
   pinterest: #https://www.pinterest.com/<>
-  rss: 123 #随便填点啥RSS就能用了
   stackoverflow: # http://stackoverflow.com/<>
   tumblr: # https://<username>.tumblr.com
   twitter: # https://www.twitter.com/<your_twitter_username> 
   youtube: # channel/<your_long_string> or user/<user-name>
   bilibili: 169345992 #https://space.bilibili.com/<>
+  rss: 123 #随便填点啥RSS就能用了
 
 # 站点页脚的文字
 footer-text: Copyright (c) 2020 啦啦啦
