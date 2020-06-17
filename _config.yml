@@ -84,7 +84,7 @@ gitalk:
   owner: MXtremist
 
 # 输入Google Analytics web tracking code
-google_analytics:
+google_analytics: UA-130578994-1
 
 
 #
