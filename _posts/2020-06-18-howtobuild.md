@@ -9,6 +9,7 @@ toc:  true
 pinned:  true
 music-type: "song"
 music-id: 1354634080
+
 comments:  true
 --- 
 
@@ -52,13 +53,17 @@ ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。
 
 根目录下 `/include/svg-icons` 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为`https://space.bilibili.com/{{ site.footer-links.bilibili }}`，我们用CV大法新添几行代码，再把其中的`<path d=>` 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，[这里](https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/brands)可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？
 
-首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用`<image>`标签加上一个base64图片，而我们需要的是`<svg> + <path d=>`这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的[网站](https://www.vectorizer.io/)。搞定图标之后，还需要配置 `_config,yml` 文件。以bilibili为例，在`foot-links`中添加：
+首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用`<image>`标签加上一个base64图片，而我们需要的是`<svg> + <path d=>`这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的[网站](https://www.vectorizer.io/)。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 `_config,yml` 文件。以bilibili为例，在`foot-links`中添加：
 
 ```css
 footer-links: 
   weibo: xxxxxx # 请输入你的微博个性域名 
   bilibili: xxxxxx # 这里填主站空间后面的数字   
 ```
+
+最终结果如下图，奇怪的硬币增加了！
+
+·<img src="https://i.loli.net/2020/06/19/zweYi6o5yhadATJ.png"/>
 
 
 
@@ -73,21 +78,21 @@ footer-links:
 ```css
 <!--配置搜索框样式-->
 <div class="search-container">
-  <input type="text" id="search-input" placeholder="search blog posts..." style="
+  <input type="text" id="search-input" placeholder="search..." style="
     width: 100%;
     height: 34px;
-    color: #109599;
-    background-color: rgba(239,242,245,.2);
+    color: #15aabf;
+    background-color: rgba(180,242,245,.2);
     line-height: 32px;
     padding: 0px 16px;
-    margin: 4px 1px;
-    border: 1px solid #109599;
+    margin: 10px 0px;
+    border: 1px solid #15aabf;
     border-radius: 17px;
     font-size: 16px;
     font-weight: bold;
     outline: none;
     box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7);
     ">
   <ul id="results-container"></ul>
 </div>
@@ -111,6 +116,119 @@ footer-links:
 ```
 
 其中第一部分为配置搜索框样式，如果想要自定义，可以参考[CSS样式大全](https://www.cnblogs.com/laihuayan/archive/2012/07/27/2611111.html)。
+
+搜索框最终实现效果如下图：
+
+<img src="https://i.loli.net/2020/06/19/a6YgRhGi7rEt3pV.png"/>
+
+
+
+### 那么有没有人看我的博客呢？
+
+浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，*你不用 Google，你有 Bing...*
+
+通过搜索发现，[这里](http://busuanzi.ibruce.info/)有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在`index.html`的末尾添加：
+
+```css
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div align="center">
+	<span id="busuanzi_container_site_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;">
+		Page View:<span id="busuanzi_value_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
+	</span>
+	<span id="busuanzi_container_site_uv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;">
+		Vistor:<span id="busuanzi_value_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
+	</span>
+</div>
+```
+
+就可以显示主站的访问量（PV）和访问人数（UV），而在\_layouts/post.html的末尾添加：
+
+```css
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div align="center">
+	<span id="busuanzi_container_page_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;">
+		本文阅读量:<span id="busuanzi_value_page_pv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
+	</span>
+</div>
+```
+
+就可以查看这篇文章的阅读量。这里是显示效果：
+
+<img src="https://i.loli.net/2020/06/19/BJFc54oXneyUKhx.png"/>
+
+显然，没什么人看我的博客XD。
+
+除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。
+
+
+
+### 音乐播放器来!
+
+如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，~~网易云biss！~~，那么我们还有其他的方法么？
+
+经过我一个下午的寻找，终于找到了METO大佬的[MetingJS](https://github.com/metowolf/MetingJS)项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在`_includes/`下创建文件`cloud-music.html`，填写下列代码：
+
+```html
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+	server="netease"
+	type={{ page.music-type }}
+	id={{ page.music-id }}
+	autoplay=true
+	theme=#0b7285
+	>
+</meting-js>
+```
+
+关于meting-js内各个参数的意义，参考[MetingJS官方手册](https://github.com/metowolf/MetingJS/blob/master/README.md)以及[Aplayer官方手册](https://aplayer.js.org/#/zh-Hans/)。注意到我们还有`type`和`id`两项没有使用了参数，这个会在后面解释。
+
+接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开`_layouts/post.html`，找到正文开头位置：
+
+```css
+<div class="entry">
+<!-- 这里是正文开头 -->
+    {{ content }}
+</div>
+```
+
+插入如下代码：
+
+```css
+{% if page.music-id %}
+	{% include cloud-music.html %}
+{% endif %} 
+```
+
+这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。
+
+在文章的`markdown`文件开头layout内添加变量music-type和music-id，前者可以为`song`, `playlist`, `album`, `search`, `artist`，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放[Bloom](https://music.163.com/#/song?id=1354634080)这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加：
+
+```js
+music-type: "song"
+music-id: 1354634080
+```
+
+而如果我想要播放歌单，把music-type改为"playlist"，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：
+
+<img src="https://i.loli.net/2020/06/19/yv8sRatbWrfjNHS.png"/>
+
+
+
+### 其他自定义
+
+| **修改属性** |      **文件位置**      |
+| :----------: | :--------------------: |
+|   主题颜色   | \_sass/_variables.scss |
+|     主页     |       index.html       |
+|    文章页    |  \_layouts/post.html   |
+|   sidebar    |  \_includes/nav.html   |
 
 
 
@@ -145,6 +263,18 @@ footer-links:
 修改：
 
 - 调整了搜索框的样式
+
+
+
+> 2020-6-19
+
+添加：
+
+- 添加了音乐播放器
+
+修改：
+
+- 修改了主题颜色
 
 
 

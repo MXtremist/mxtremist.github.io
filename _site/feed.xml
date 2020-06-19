@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-19T17:50:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">MXtremist</title><subtitle>人生天地间，忽如远行客。</subtitle><entry><title type="html">从零开始的搭建个人博客生活</title><link href="http://localhost:4000/howtobuild/" rel="alternate" type="text/html" title="从零开始的搭建个人博客生活" /><published>2020-06-18T00:00:00+08:00</published><updated>2020-06-18T00:00:00+08:00</updated><id>http://localhost:4000/howtobuild</id><content type="html" xml:base="http://localhost:4000/howtobuild/">&lt;p&gt;在这里记录和分享我的搭建经验，&lt;del&gt;应该不会&lt;/del&gt;持续更新&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-19T19:24:38+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">MXtremist</title><subtitle>人生天地间，忽如远行客。</subtitle><entry><title type="html">从零开始的搭建个人博客生活</title><link href="http://localhost:4000/howtobuild/" rel="alternate" type="text/html" title="从零开始的搭建个人博客生活" /><published>2020-06-18T00:00:00+08:00</published><updated>2020-06-18T00:00:00+08:00</updated><id>http://localhost:4000/howtobuild</id><content type="html" xml:base="http://localhost:4000/howtobuild/">&lt;p&gt;在这里记录和分享我的搭建经验，&lt;del&gt;应该不会&lt;/del&gt;持续更新&lt;/p&gt;
 
 &lt;h2 id=&quot;开始&quot;&gt;开始&lt;/h2&gt;
 
@@ -32,12 +32,16 @@
 
 &lt;p&gt;根目录下 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/include/svg-icons&lt;/code&gt; 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://space.bilibili.com/169345992&lt;/code&gt;，我们用CV大法新添几行代码，再把其中的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;path d=&amp;gt;&lt;/code&gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，&lt;a href=&quot;https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/brands&quot;&gt;这里&lt;/a&gt;可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？&lt;/p&gt;
 
-&lt;p&gt;首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;image&amp;gt;&lt;/code&gt;标签加上一个base64图片，而我们需要的是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;svg&amp;gt; + &amp;lt;path d=&amp;gt;&lt;/code&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的&lt;a href=&quot;https://www.vectorizer.io/&quot;&gt;网站&lt;/a&gt;。搞定图标之后，还需要配置 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config,yml&lt;/code&gt; 文件。以bilibili为例，在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foot-links&lt;/code&gt;中添加：&lt;/p&gt;
+&lt;p&gt;首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;image&amp;gt;&lt;/code&gt;标签加上一个base64图片，而我们需要的是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;svg&amp;gt; + &amp;lt;path d=&amp;gt;&lt;/code&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的&lt;a href=&quot;https://www.vectorizer.io/&quot;&gt;网站&lt;/a&gt;。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config,yml&lt;/code&gt; 文件。以bilibili为例，在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foot-links&lt;/code&gt;中添加：&lt;/p&gt;
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;footer-links&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; 
   &lt;span class=&quot;nt&quot;&gt;weibo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;xxxxxx&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;请输入你的微博个性域名&lt;/span&gt; 
   &lt;span class=&quot;nt&quot;&gt;bilibili&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;xxxxxx&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;这里填主站空间后面的数字&lt;/span&gt;   
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最终结果如下图，奇怪的硬币增加了！&lt;/p&gt;
+
+&lt;p&gt;·&lt;img src=&quot;https://i.loli.net/2020/06/19/zweYi6o5yhadATJ.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;添加搜索功能&quot;&gt;添加搜索功能&lt;/h3&gt;
 
@@ -49,21 +53,21 @@
 
 &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;配置搜索框样式&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;search-container&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;search-input&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;search blog posts...&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;search-input&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;search...&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;
     width: 100%;
     height: 34px;
-    color: #109599;
-    background-color: rgba(239,242,245,.2);
+    color: #15aabf;
+    background-color: rgba(180,242,245,.2);
     line-height: 32px;
     padding: 0px 16px;
-    margin: 4px 1px;
-    border: 1px solid #109599;
+    margin: 10px 0px;
+    border: 1px solid #15aabf;
     border-radius: 17px;
     font-size: 16px;
     font-weight: bold;
     outline: none;
     box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7);
     &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;results-container&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -86,6 +90,217 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;其中第一部分为配置搜索框样式，如果想要自定义，可以参考&lt;a href=&quot;https://www.cnblogs.com/laihuayan/archive/2012/07/27/2611111.html&quot;&gt;CSS样式大全&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;搜索框最终实现效果如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/19/a6YgRhGi7rEt3pV.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;那么有没有人看我的博客呢&quot;&gt;那么有没有人看我的博客呢？&lt;/h3&gt;
+
+&lt;p&gt;浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，&lt;em&gt;你不用 Google，你有 Bing…&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;通过搜索发现，&lt;a href=&quot;http://busuanzi.ibruce.info/&quot;&gt;这里&lt;/a&gt;有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt;的末尾添加：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_container_site_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;Page&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_value_site_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_container_site_uv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;Vistor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_value_site_uv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;就可以显示主站的访问量（PV）和访问人数（UV），而在_layouts/post.html的末尾添加：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_container_page_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;err&quot;&gt;本文阅读量&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_value_page_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;就可以查看这篇文章的阅读量。这里是显示效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/19/BJFc54oXneyUKhx.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;显然，没什么人看我的博客XD。&lt;/p&gt;
+
+&lt;p&gt;除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。&lt;/p&gt;
+
+&lt;h3 id=&quot;音乐播放器来&quot;&gt;音乐播放器来!&lt;/h3&gt;
+
+&lt;p&gt;如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，&lt;del&gt;网易云biss！&lt;/del&gt;，那么我们还有其他的方法么？&lt;/p&gt;
+
+&lt;p&gt;经过我一个下午的寻找，终于找到了METO大佬的&lt;a href=&quot;https://github.com/metowolf/MetingJS&quot;&gt;MetingJS&lt;/a&gt;项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes/&lt;/code&gt;下创建文件&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloud-music.html&lt;/code&gt;，填写下列代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- require APlayer --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- require MetingJS --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meting-js&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;server=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;netease&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;song&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;1354634080&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;autoplay=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;theme=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;#0b7285&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/meting-js&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;关于meting-js内各个参数的意义，参考&lt;a href=&quot;https://github.com/metowolf/MetingJS/blob/master/README.md&quot;&gt;MetingJS官方手册&lt;/a&gt;以及&lt;a href=&quot;https://aplayer.js.org/#/zh-Hans/&quot;&gt;Aplayer官方手册&lt;/a&gt;。注意到我们还有&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;type&lt;/code&gt;和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id&lt;/code&gt;两项没有使用了参数，这个会在后面解释。&lt;/p&gt;
+
+&lt;p&gt;接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/post.html&lt;/code&gt;，找到正文开头位置：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;entry&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;这里是正文开头&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;article&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;posts&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;第一篇文档&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;clsss&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;meta&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;2020-06-16&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;tag&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;http://localhost:4000/tags#sample&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;sample&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;http://localhost:4000/tags#document&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;document&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;entry&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;正文开头&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+   
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;上传于&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;2020&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，仅供测试用&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  
+  
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;comments&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;gitalk-container&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;gitalk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Gitalk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;py&quot;&gt;clientID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;f2cc1434697010b42873&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;clientSecret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;50ff590e9ecbf9d94b330da8c4b30291b3bbe2cb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;repo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;mxtremist.github.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;MXtremist&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;MXtremist&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pathname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ensure&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniqueness&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;less&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;distractionFreeMode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Facebook-like&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distraction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;第一篇文档&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;zh-CN&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;nt&quot;&gt;gitalk&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.render&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'gitalk-container'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;article&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;pagination&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  
+  
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;next&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;http://localhost:4000/howtobuild/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;下一篇&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;→&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_container_page_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;err&quot;&gt;本文阅读量&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;busuanzi_value_page_pv&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;插入如下代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;APlayer&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MetingJS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;meting-js&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;netease&quot;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;song&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;1354634080&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;autoplay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;true&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;#0b7285&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;meting-js&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。&lt;/p&gt;
+
+&lt;p&gt;在文章的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;markdown&lt;/code&gt;文件开头layout内添加变量music-type和music-id，前者可以为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;song&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;playlist&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;album&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;search&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;artist&lt;/code&gt;，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放&lt;a href=&quot;https://music.163.com/#/song?id=1354634080&quot;&gt;Bloom&lt;/a&gt;这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;music&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;song&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;music&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1354634080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/06/19/yv8sRatbWrfjNHS.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;其他自定义&quot;&gt;其他自定义&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;修改属性&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;文件位置&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;主题颜色&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;_sass/_variables.scss&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;主页&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;index.html&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;文章页&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;_layouts/post.html&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sidebar&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;_includes/nav.html&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&quot;更新日志&quot;&gt;更新日志&lt;/h2&gt;
 
@@ -129,6 +344,22 @@
   &lt;li&gt;调整了搜索框的样式&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;2020-6-19&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;添加：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;添加了音乐播放器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;修改：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改了主题颜色&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;致谢&quot;&gt;致谢&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -139,4 +370,4 @@
   &lt;li&gt;&lt;a href=&quot;https://sm.ms/&quot;&gt;SM.MS&lt;/a&gt; - 免费好用没被墙的图床&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/christian-fei/Simple-Jekyll-Search&quot;&gt;Simple-Jekyll-Search&lt;/a&gt; - 搜索功能支持&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://busuanzi.ibruce.info/&quot;&gt;不蒜子&lt;/a&gt; - 访问计数功能支持&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="notes" /><summary type="html">在这里记录和分享我的搭建经验，应该不会持续更新 开始 想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（贫穷）一直没有实现。偶然了解到GitHub Pages的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。 搭建并完善 基于GitHub Pages搭建个人博客 关于基础的建立，可以参考LOFFER使用基础教程，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 _config,yml 和作者仓库的README中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork我的仓库。 按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 name.github.io ，例如我的仓库就命名为 mxtremist.github.io ，这样我的博客首页就会是mxtremist.github.io。 属于自己的LOGO 大触可以直接跳过，自己画一个就OK了。 关于logo的制作，这里推荐一个我认为比较好用的网站：DesignEvo ，使用免费且有较多个性化选择，唯一的问题是不支持背景透明（也可能是我没看到），如果使用不规则的图形，比如我这样的，可能需要背景透明才会更好看，这里推荐一个Windows下好用的icon编辑软件icoFX，这个软件是我当初在个性化Windows 10的时候发现的，改天我可能会写一个关于美化Win10的文章。 编辑好自己的logo和favicon（用于显示在浏览器角标）之后，需要上传到图床，这里推荐SM.MS，这也是老牌图床了，在国内好用且免费。 上传好后点击Image URL，将图片链接粘贴到 _config.yml 中对应位置即可。注意对于任何的改动，可能都需要几分钟才能在自己的主页刷新，所以如果有需求可以考虑增加本地博客预览功能，具体实现请问搜索引擎。 ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。 只支持微博，还有一大堆不存在的社交链接？ 原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？ 根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&amp;lt;path d=&amp;gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？ 首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&amp;lt;image&amp;gt;标签加上一个base64图片，而我们需要的是&amp;lt;svg&amp;gt; + &amp;lt;path d=&amp;gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加： footer-links: weibo: xxxxxx # 请输入你的微博个性域名 bilibili: xxxxxx # 这里填主站空间后面的数字 添加搜索功能 如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。 搜索功能由Simple-Jekyll-Search提供技术支持。点击右上角donwload，解压后将/example/js文件夹和/example/search.json文件上传到我们自己的仓库根目录下即可。 接下来需要在想要显示的页面配置搜索框，例如想要在主页，那么就打开index.html，粘贴以下两端代码： &amp;lt;!--配置搜索框样式--&amp;gt; &amp;lt;div class=&quot;search-container&quot;&amp;gt; &amp;lt;input type=&quot;text&quot; id=&quot;search-input&quot; placeholder=&quot;search blog posts...&quot; style=&quot; width: 100%; height: 34px; color: #109599; background-color: rgba(239,242,245,.2); line-height: 32px; padding: 0px 16px; margin: 4px 1px; border: 1px solid #109599; border-radius: 17px; font-size: 16px; font-weight: bold; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7); &quot;&amp;gt; &amp;lt;ul id=&quot;results-container&quot;&amp;gt;&amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;!--配置搜索功能--&amp;gt; &amp;lt;script src=&quot;/js/simple-jekyll-search.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; window.simpleJekyllSearch = new SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('results-container'), json: '/search.json', searchResultTemplate: '&amp;lt;li&amp;gt;&amp;lt;a href=&quot;{url}?query={query}&quot; title=&quot;{desc}&quot;&amp;gt;{title}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;', limit: 5, fuzzy: false, exclude: ['Welcome'] }) &amp;lt;/script&amp;gt; 其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。 更新日志 2020-6-16 添加： 个人博客正式上线 支持基于Disqus的评论 2020-6-17 添加： 现在支持bilibili链接了 增加了搜索（仅支持搜索posts内文件名和tag） 增加了访问人数统计 修改： 替换了新的logo和favicon，自我感觉更好看了 将评论区由Disqus替换为Gittalk，然而依然被墙 2020-6-18 修改： 调整了搜索框的样式 致谢 Jekyll - 这是本站存在的根基 LOFFER - 提供了基础框架及教程 DesignEvo - 在线制作免费好康的logo vectorizer - 常见图片格式转换为真·SVG SM.MS - 免费好用没被墙的图床 Simple-Jekyll-Search - 搜索功能支持 不蒜子 - 访问计数功能支持</summary></entry><entry><title type="html">第一篇文档</title><link href="http://localhost:4000/firstdoc/" rel="alternate" type="text/html" title="第一篇文档" /><published>2020-06-16T00:00:00+08:00</published><updated>2020-06-16T00:00:00+08:00</updated><id>http://localhost:4000/firstdoc</id><content type="html" xml:base="http://localhost:4000/firstdoc/">&lt;p&gt;上传于2020/6/16，仅供测试用&lt;/p&gt;</content><author><name></name></author><category term="sample" /><category term="document" /><summary type="html">上传于2020/6/16，仅供测试用</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><category term="notes" /><summary type="html">在这里记录和分享我的搭建经验，应该不会持续更新 开始 想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（贫穷）一直没有实现。偶然了解到GitHub Pages的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。 搭建并完善 基于GitHub Pages搭建个人博客 关于基础的建立，可以参考LOFFER使用基础教程，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 _config,yml 和作者仓库的README中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork我的仓库。 按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 name.github.io ，例如我的仓库就命名为 mxtremist.github.io ，这样我的博客首页就会是mxtremist.github.io。 属于自己的LOGO 大触可以直接跳过，自己画一个就OK了。 关于logo的制作，这里推荐一个我认为比较好用的网站：DesignEvo ，使用免费且有较多个性化选择，唯一的问题是不支持背景透明（也可能是我没看到），如果使用不规则的图形，比如我这样的，可能需要背景透明才会更好看，这里推荐一个Windows下好用的icon编辑软件icoFX，这个软件是我当初在个性化Windows 10的时候发现的，改天我可能会写一个关于美化Win10的文章。 编辑好自己的logo和favicon（用于显示在浏览器角标）之后，需要上传到图床，这里推荐SM.MS，这也是老牌图床了，在国内好用且免费。 上传好后点击Image URL，将图片链接粘贴到 _config.yml 中对应位置即可。注意对于任何的改动，可能都需要几分钟才能在自己的主页刷新，所以如果有需求可以考虑增加本地博客预览功能，具体实现请问搜索引擎。 ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。 只支持微博，还有一大堆不存在的社交链接？ 原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？ 根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&amp;lt;path d=&amp;gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？ 首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&amp;lt;image&amp;gt;标签加上一个base64图片，而我们需要的是&amp;lt;svg&amp;gt; + &amp;lt;path d=&amp;gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加： footer-links: weibo: xxxxxx # 请输入你的微博个性域名 bilibili: xxxxxx # 这里填主站空间后面的数字 最终结果如下图，奇怪的硬币增加了！ · 添加搜索功能 如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。 搜索功能由Simple-Jekyll-Search提供技术支持。点击右上角donwload，解压后将/example/js文件夹和/example/search.json文件上传到我们自己的仓库根目录下即可。 接下来需要在想要显示的页面配置搜索框，例如想要在主页，那么就打开index.html，粘贴以下两端代码： &amp;lt;!--配置搜索框样式--&amp;gt; &amp;lt;div class=&quot;search-container&quot;&amp;gt; &amp;lt;input type=&quot;text&quot; id=&quot;search-input&quot; placeholder=&quot;search...&quot; style=&quot; width: 100%; height: 34px; color: #15aabf; background-color: rgba(180,242,245,.2); line-height: 32px; padding: 0px 16px; margin: 10px 0px; border: 1px solid #15aabf; border-radius: 17px; font-size: 16px; font-weight: bold; outline: none; box-sizing: border-box; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7); &quot;&amp;gt; &amp;lt;ul id=&quot;results-container&quot;&amp;gt;&amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;!--配置搜索功能--&amp;gt; &amp;lt;script src=&quot;/js/simple-jekyll-search.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; window.simpleJekyllSearch = new SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('results-container'), json: '/search.json', searchResultTemplate: '&amp;lt;li&amp;gt;&amp;lt;a href=&quot;{url}?query={query}&quot; title=&quot;{desc}&quot;&amp;gt;{title}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;', limit: 5, fuzzy: false, exclude: ['Welcome'] }) &amp;lt;/script&amp;gt; 其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。 搜索框最终实现效果如下图： 那么有没有人看我的博客呢？ 浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，你不用 Google，你有 Bing… 通过搜索发现，这里有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在index.html的末尾添加： &amp;lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;div align=&quot;center&quot;&amp;gt; &amp;lt;span id=&quot;busuanzi_container_site_pv&quot; style=&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&amp;gt; Page View:&amp;lt;span id=&quot;busuanzi_value_site_pv&quot; style=&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;span id=&quot;busuanzi_container_site_uv&quot; style=&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&amp;gt; Vistor:&amp;lt;span id=&quot;busuanzi_value_site_uv&quot; style=&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; 就可以显示主站的访问量（PV）和访问人数（UV），而在_layouts/post.html的末尾添加： &amp;lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;div align=&quot;center&quot;&amp;gt; &amp;lt;span id=&quot;busuanzi_container_page_pv&quot; style=&quot;font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;&quot;&amp;gt; 本文阅读量:&amp;lt;span id=&quot;busuanzi_value_page_pv&quot; style=&quot;font-family:Consolas;color:Silver;font-size:12px;&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; 就可以查看这篇文章的阅读量。这里是显示效果： 显然，没什么人看我的博客XD。 除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。 音乐播放器来! 如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，网易云biss！，那么我们还有其他的方法么？ 经过我一个下午的寻找，终于找到了METO大佬的MetingJS项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在_includes/下创建文件cloud-music.html，填写下列代码： &amp;lt;!-- require APlayer --&amp;gt; &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&amp;gt; &amp;lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;!-- require MetingJS --&amp;gt; &amp;lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;meting-js server=&quot;netease&quot; type=song id=1354634080 autoplay=true theme=#0b7285 &amp;gt; &amp;lt;/meting-js&amp;gt; 关于meting-js内各个参数的意义，参考MetingJS官方手册以及Aplayer官方手册。注意到我们还有type和id两项没有使用了参数，这个会在后面解释。 接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开_layouts/post.html，找到正文开头位置： &amp;lt;div class=&quot;entry&quot;&amp;gt; &amp;lt;!-- 这里是正文开头 --&amp;gt; &amp;lt;/div&amp;gt; 插入如下代码： &amp;lt;!-- require APlayer --&amp;gt; &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&amp;gt; &amp;lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;!-- require MetingJS --&amp;gt; &amp;lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;meting-js server=&quot;netease&quot; type=song id=1354634080 autoplay=true theme=#0b7285 &amp;gt; &amp;lt;/meting-js&amp;gt; 这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。 在文章的markdown文件开头layout内添加变量music-type和music-id，前者可以为song, playlist, album, search, artist，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放Bloom这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加： music-type: &quot;song&quot; music-id: 1354634080 而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊： 其他自定义 修改属性 文件位置 主题颜色 _sass/_variables.scss 主页 index.html 文章页 _layouts/post.html sidebar _includes/nav.html 更新日志 2020-6-16 添加： 个人博客正式上线 支持基于Disqus的评论 2020-6-17 添加： 现在支持bilibili链接了 增加了搜索（仅支持搜索posts内文件名和tag） 增加了访问人数统计 修改： 替换了新的logo和favicon，自我感觉更好看了 将评论区由Disqus替换为Gittalk，然而依然被墙 2020-6-18 修改： 调整了搜索框的样式 2020-6-19 添加： 添加了音乐播放器 修改： 修改了主题颜色 致谢 Jekyll - 这是本站存在的根基 LOFFER - 提供了基础框架及教程 DesignEvo - 在线制作免费好康的logo vectorizer - 常见图片格式转换为真·SVG SM.MS - 免费好用没被墙的图床 Simple-Jekyll-Search - 搜索功能支持 不蒜子 - 访问计数功能支持</summary></entry><entry><title type="html">第一篇文档</title><link href="http://localhost:4000/firstdoc/" rel="alternate" type="text/html" title="第一篇文档" /><published>2020-06-16T00:00:00+08:00</published><updated>2020-06-16T00:00:00+08:00</updated><id>http://localhost:4000/firstdoc</id><content type="html" xml:base="http://localhost:4000/firstdoc/">&lt;p&gt;上传于2020/6/16，仅供测试用&lt;/p&gt;</content><author><name></name></author><category term="sample" /><category term="document" /><summary type="html">上传于2020/6/16，仅供测试用</summary></entry></feed>

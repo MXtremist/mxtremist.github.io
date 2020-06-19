@@ -43,12 +43,16 @@ ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。
 
 根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&lt;path d=&gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？
 
-首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
+首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
 
 footer-links: 
   weibo: xxxxxx # 请输入你的微博个性域名 
   bilibili: xxxxxx # 这里填主站空间后面的数字   
 
+
+最终结果如下图，奇怪的硬币增加了！
+
+·
 
 添加搜索功能
 
@@ -60,21 +64,21 @@ footer-links:
 
 &lt;!--配置搜索框样式--&gt;
 &lt;div class="search-container"&gt;
-  &lt;input type="text" id="search-input" placeholder="search blog posts..." style="
+  &lt;input type="text" id="search-input" placeholder="search..." style="
     width: 100%;
     height: 34px;
-    color: #109599;
-    background-color: rgba(239,242,245,.2);
+    color: #15aabf;
+    background-color: rgba(180,242,245,.2);
     line-height: 32px;
     padding: 0px 16px;
-    margin: 4px 1px;
-    border: 1px solid #109599;
+    margin: 10px 0px;
+    border: 1px solid #15aabf;
     border-radius: 17px;
     font-size: 16px;
     font-weight: bold;
     outline: none;
     box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7);
     "&gt;
   &lt;ul id="results-container"&gt;&lt;/ul&gt;
 &lt;/div&gt;
@@ -97,6 +101,140 @@ footer-links:
 
 
 其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。
+
+搜索框最终实现效果如下图：
+
+
+
+那么有没有人看我的博客呢？
+
+浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，你不用 Google，你有 Bing…
+
+通过搜索发现，这里有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在index.html的末尾添加：
+
+&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;
+&lt;/script&gt;
+&lt;div align="center"&gt;
+	&lt;span id="busuanzi_container_site_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		Page View:&lt;span id="busuanzi_value_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+	&lt;span id="busuanzi_container_site_uv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		Vistor:&lt;span id="busuanzi_value_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+&lt;/div&gt;
+
+
+就可以显示主站的访问量（PV）和访问人数（UV），而在_layouts/post.html的末尾添加：
+
+&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;
+&lt;/script&gt;
+&lt;div align="center"&gt;
+	&lt;span id="busuanzi_container_page_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		本文阅读量:&lt;span id="busuanzi_value_page_pv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+&lt;/div&gt;
+
+
+就可以查看这篇文章的阅读量。这里是显示效果：
+
+
+
+显然，没什么人看我的博客XD。
+
+除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。
+
+音乐播放器来!
+
+如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，网易云biss！，那么我们还有其他的方法么？
+
+经过我一个下午的寻找，终于找到了METO大佬的MetingJS项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在_includes/下创建文件cloud-music.html，填写下列代码：
+
+&lt;!-- require APlayer --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"&gt;&lt;/script&gt;
+
+&lt;meting-js
+	server="netease"
+	type=song
+	id=1354634080
+	autoplay=true
+	theme=#0b7285
+	&gt;
+&lt;/meting-js&gt;
+
+
+关于meting-js内各个参数的意义，参考MetingJS官方手册以及Aplayer官方手册。注意到我们还有type和id两项没有使用了参数，这个会在后面解释。
+
+接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开_layouts/post.html，找到正文开头位置：
+
+&lt;div class="entry"&gt;
+&lt;!-- 这里是正文开头 --&gt;
+    
+&lt;/div&gt;
+
+
+插入如下代码：
+
+
+	&lt;!-- require APlayer --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"&gt;&lt;/script&gt;
+
+&lt;meting-js
+	server="netease"
+	type=song
+	id=1354634080
+	autoplay=true
+	theme=#0b7285
+	&gt;
+&lt;/meting-js&gt;
+ 
+
+
+这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。
+
+在文章的markdown文件开头layout内添加变量music-type和music-id，前者可以为song, playlist, album, search, artist，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放Bloom这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加：
+
+music-type: "song"
+music-id: 1354634080
+
+
+而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：
+
+
+
+其他自定义
+
+
+  
+    
+      修改属性
+      文件位置
+    
+  
+  
+    
+      主题颜色
+      _sass/_variables.scss
+    
+    
+      主页
+      index.html
+    
+    
+      文章页
+      _layouts/post.html
+    
+    
+      sidebar
+      _includes/nav.html
+    
+  
+
 
 更新日志
 
@@ -138,6 +276,22 @@ footer-links:
 
 
   调整了搜索框的样式
+
+
+
+  2020-6-19
+
+
+添加：
+
+
+  添加了音乐播放器
+
+
+修改：
+
+
+  修改了主题颜色
 
 
 致谢
@@ -186,12 +340,16 @@ ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。
 
 根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&lt;path d=&gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？
 
-首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
+首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
 
 footer-links: 
   weibo: xxxxxx # 请输入你的微博个性域名 
   bilibili: xxxxxx # 这里填主站空间后面的数字   
 
+
+最终结果如下图，奇怪的硬币增加了！
+
+·
 
 添加搜索功能
 
@@ -203,21 +361,21 @@ footer-links:
 
 &lt;!--配置搜索框样式--&gt;
 &lt;div class="search-container"&gt;
-  &lt;input type="text" id="search-input" placeholder="search blog posts..." style="
+  &lt;input type="text" id="search-input" placeholder="search..." style="
     width: 100%;
     height: 34px;
-    color: #109599;
-    background-color: rgba(239,242,245,.2);
+    color: #15aabf;
+    background-color: rgba(180,242,245,.2);
     line-height: 32px;
     padding: 0px 16px;
-    margin: 4px 1px;
-    border: 1px solid #109599;
+    margin: 10px 0px;
+    border: 1px solid #15aabf;
     border-radius: 17px;
     font-size: 16px;
     font-weight: bold;
     outline: none;
     box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7);
     "&gt;
   &lt;ul id="results-container"&gt;&lt;/ul&gt;
 &lt;/div&gt;
@@ -240,6 +398,140 @@ footer-links:
 
 
 其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。
+
+搜索框最终实现效果如下图：
+
+
+
+那么有没有人看我的博客呢？
+
+浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，你不用 Google，你有 Bing…
+
+通过搜索发现，这里有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在index.html的末尾添加：
+
+&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;
+&lt;/script&gt;
+&lt;div align="center"&gt;
+	&lt;span id="busuanzi_container_site_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		Page View:&lt;span id="busuanzi_value_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+	&lt;span id="busuanzi_container_site_uv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		Vistor:&lt;span id="busuanzi_value_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+&lt;/div&gt;
+
+
+就可以显示主站的访问量（PV）和访问人数（UV），而在_layouts/post.html的末尾添加：
+
+&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;
+&lt;/script&gt;
+&lt;div align="center"&gt;
+	&lt;span id="busuanzi_container_page_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"&gt;
+		本文阅读量:&lt;span id="busuanzi_value_page_pv" style="font-family:Consolas;color:Silver;font-size:12px;"&gt;&lt;/span&gt;
+	&lt;/span&gt;
+&lt;/div&gt;
+
+
+就可以查看这篇文章的阅读量。这里是显示效果：
+
+
+
+显然，没什么人看我的博客XD。
+
+除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。
+
+音乐播放器来!
+
+如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，网易云biss！，那么我们还有其他的方法么？
+
+经过我一个下午的寻找，终于找到了METO大佬的MetingJS项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在_includes/下创建文件cloud-music.html，填写下列代码：
+
+&lt;!-- require APlayer --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"&gt;&lt;/script&gt;
+
+&lt;meting-js
+	server="netease"
+	type=song
+	id=1354634080
+	autoplay=true
+	theme=#0b7285
+	&gt;
+&lt;/meting-js&gt;
+
+
+关于meting-js内各个参数的意义，参考MetingJS官方手册以及Aplayer官方手册。注意到我们还有type和id两项没有使用了参数，这个会在后面解释。
+
+接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开_layouts/post.html，找到正文开头位置：
+
+&lt;div class="entry"&gt;
+&lt;!-- 这里是正文开头 --&gt;
+    
+&lt;/div&gt;
+
+
+插入如下代码：
+
+
+	&lt;!-- require APlayer --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"&gt;&lt;/script&gt;
+
+&lt;meting-js
+	server="netease"
+	type=song
+	id=1354634080
+	autoplay=true
+	theme=#0b7285
+	&gt;
+&lt;/meting-js&gt;
+ 
+
+
+这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。
+
+在文章的markdown文件开头layout内添加变量music-type和music-id，前者可以为song, playlist, album, search, artist，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放Bloom这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加：
+
+music-type: "song"
+music-id: 1354634080
+
+
+而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：
+
+
+
+其他自定义
+
+
+  
+    
+      修改属性
+      文件位置
+    
+  
+  
+    
+      主题颜色
+      _sass/_variables.scss
+    
+    
+      主页
+      index.html
+    
+    
+      文章页
+      _layouts/post.html
+    
+    
+      sidebar
+      _includes/nav.html
+    
+  
+
 
 更新日志
 
@@ -281,6 +573,22 @@ footer-links:
 
 
   调整了搜索框的样式
+
+
+
+  2020-6-19
+
+
+添加：
+
+
+  添加了音乐播放器
+
+
+修改：
+
+
+  修改了主题颜色
 
 
 致谢
@@ -460,6 +768,9 @@ footer-links:
           <li><a href="#属于自己的logo">属于自己的LOGO</a></li>
           <li><a href="#只支持微博还有一大堆不存在的社交链接">只支持微博，还有一大堆不存在的社交链接？</a></li>
           <li><a href="#添加搜索功能">添加搜索功能</a></li>
+          <li><a href="#那么有没有人看我的博客呢">那么有没有人看我的博客呢？</a></li>
+          <li><a href="#音乐播放器来">音乐播放器来!</a></li>
+          <li><a href="#其他自定义">其他自定义</a></li>
         </ul>
       </li>
       <li><a href="#更新日志">更新日志</a></li>
@@ -495,7 +806,7 @@ footer-links:
     </ul>
   </div>
   <div class="entry">
-<!-- 在正文开头添加网易云音乐插件 -->
+<!-- 正文开头 -->
   
     <!-- require APlayer -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
@@ -546,12 +857,16 @@ footer-links:
 
 <p>根目录下 <code class="language-plaintext highlighter-rouge">/include/svg-icons</code> 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为<code class="language-plaintext highlighter-rouge">https://space.bilibili.com/169345992</code>，我们用CV大法新添几行代码，再把其中的<code class="language-plaintext highlighter-rouge">&lt;path d=&gt;</code> 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，<a href="https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/brands">这里</a>可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？</p>
 
-<p>首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用<code class="language-plaintext highlighter-rouge">&lt;image&gt;</code>标签加上一个base64图片，而我们需要的是<code class="language-plaintext highlighter-rouge">&lt;svg&gt; + &lt;path d=&gt;</code>这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的<a href="https://www.vectorizer.io/">网站</a>。搞定图标之后，还需要配置 <code class="language-plaintext highlighter-rouge">_config,yml</code> 文件。以bilibili为例，在<code class="language-plaintext highlighter-rouge">foot-links</code>中添加：</p>
+<p>首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用<code class="language-plaintext highlighter-rouge">&lt;image&gt;</code>标签加上一个base64图片，而我们需要的是<code class="language-plaintext highlighter-rouge">&lt;svg&gt; + &lt;path d=&gt;</code>这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的<a href="https://www.vectorizer.io/">网站</a>。自己选好图标，上传，得到SVG相关参数，CV大法，搞定！搞定图标之后，还需要配置 <code class="language-plaintext highlighter-rouge">_config,yml</code> 文件。以bilibili为例，在<code class="language-plaintext highlighter-rouge">foot-links</code>中添加：</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">footer-links</span><span class="o">:</span> 
   <span class="nt">weibo</span><span class="o">:</span> <span class="nt">xxxxxx</span> <span class="err">#</span> <span class="err">请输入你的微博个性域名</span> 
   <span class="nt">bilibili</span><span class="o">:</span> <span class="nt">xxxxxx</span> <span class="err">#</span> <span class="err">这里填主站空间后面的数字</span>   
 </code></pre></div></div>
+
+<p>最终结果如下图，奇怪的硬币增加了！</p>
+
+<p>·<img src="https://i.loli.net/2020/06/19/zweYi6o5yhadATJ.png" /></p>
 
 <h3 id="添加搜索功能">添加搜索功能</h3>
 
@@ -563,21 +878,21 @@ footer-links:
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nt">--</span><span class="err">配置搜索框样式</span><span class="nt">--</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"search-container"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nt">input</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text"</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"search-input"</span> <span class="nt">placeholder</span><span class="o">=</span><span class="s1">"search blog posts..."</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"
+  <span class="o">&lt;</span><span class="nt">input</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text"</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"search-input"</span> <span class="nt">placeholder</span><span class="o">=</span><span class="s1">"search..."</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"
     width: 100%;
     height: 34px;
-    color: #109599;
-    background-color: rgba(239,242,245,.2);
+    color: #15aabf;
+    background-color: rgba(180,242,245,.2);
     line-height: 32px;
     padding: 0px 16px;
-    margin: 4px 1px;
-    border: 1px solid #109599;
+    margin: 10px 0px;
+    border: 1px solid #15aabf;
     border-radius: 17px;
     font-size: 16px;
     font-weight: bold;
     outline: none;
     box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(21,170,191,.7);
     "</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nt">ul</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"results-container"</span><span class="o">&gt;&lt;/</span><span class="nt">ul</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
@@ -600,6 +915,217 @@ footer-links:
 </code></pre></div></div>
 
 <p>其中第一部分为配置搜索框样式，如果想要自定义，可以参考<a href="https://www.cnblogs.com/laihuayan/archive/2012/07/27/2611111.html">CSS样式大全</a>。</p>
+
+<p>搜索框最终实现效果如下图：</p>
+
+<p><img src="https://i.loli.net/2020/06/19/a6YgRhGi7rEt3pV.png" /></p>
+
+<h3 id="那么有没有人看我的博客呢">那么有没有人看我的博客呢？</h3>
+
+<p>浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，<em>你不用 Google，你有 Bing…</em></p>
+
+<p>通过搜索发现，<a href="http://busuanzi.ibruce.info/">这里</a>有一个非常简单好用的工具，有了它，我们就可以很方便地在想要的位置添加想要显示的数据。例如，在<code class="language-plaintext highlighter-rouge">index.html</code>的末尾添加：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">async</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">align</span><span class="o">=</span><span class="s1">"center"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
+		<span class="nt">Page</span> <span class="nt">View</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_site_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_uv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
+		<span class="nt">Vistor</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_site_uv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>就可以显示主站的访问量（PV）和访问人数（UV），而在_layouts/post.html的末尾添加：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">async</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">align</span><span class="o">=</span><span class="s1">"center"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
+		<span class="err">本文阅读量</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>就可以查看这篇文章的阅读量。这里是显示效果：</p>
+
+<p><img src="https://i.loli.net/2020/06/19/BJFc54oXneyUKhx.png" /></p>
+
+<p>显然，没什么人看我的博客XD。</p>
+
+<p>除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。</p>
+
+<h3 id="音乐播放器来">音乐播放器来!</h3>
+
+<p>如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，<del>网易云biss！</del>，那么我们还有其他的方法么？</p>
+
+<p>经过我一个下午的寻找，终于找到了METO大佬的<a href="https://github.com/metowolf/MetingJS">MetingJS</a>项目，该项目为我们提供了一个使用起来极其方便的音乐播放器插件。想要使用这个插件，首先我们在<code class="language-plaintext highlighter-rouge">_includes/</code>下创建文件<code class="language-plaintext highlighter-rouge">cloud-music.html</code>，填写下列代码：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- require APlayer --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- require MetingJS --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;meting-js</span>
+	<span class="na">server=</span><span class="s">"netease"</span>
+	<span class="na">type=</span><span class="s">song</span>
+	<span class="na">id=</span><span class="s">1354634080</span>
+	<span class="na">autoplay=</span><span class="s">true</span>
+	<span class="na">theme=</span><span class="s">#0b7285</span>
+	<span class="nt">&gt;</span>
+<span class="nt">&lt;/meting-js&gt;</span>
+</code></pre></div></div>
+
+<p>关于meting-js内各个参数的意义，参考<a href="https://github.com/metowolf/MetingJS/blob/master/README.md">MetingJS官方手册</a>以及<a href="https://aplayer.js.org/#/zh-Hans/">Aplayer官方手册</a>。注意到我们还有<code class="language-plaintext highlighter-rouge">type</code>和<code class="language-plaintext highlighter-rouge">id</code>两项没有使用了参数，这个会在后面解释。</p>
+
+<p>接下来，找到你需要添加音乐播放器的位置。例如，我想要在每篇文章的正文开头添加，就打开<code class="language-plaintext highlighter-rouge">_layouts/post.html</code>，找到正文开头位置：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"entry"</span><span class="o">&gt;</span>
+<span class="o">&lt;!</span><span class="nt">--</span> <span class="err">这里是正文开头</span> <span class="nt">--</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">article</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"posts"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="err">第一篇文档</span><span class="o">&lt;/</span><span class="nt">h1</span><span class="o">&gt;</span>
+
+  <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">clsss</span><span class="o">=</span><span class="s1">"meta"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">span</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"author"</span><span class="o">&gt;</span>
+      
+    <span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="nt">span</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"date"</span><span class="o">&gt;</span>
+      <span class="nt">2020-06-16</span>
+    <span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="nt">ul</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"tag"</span><span class="o">&gt;</span>
+      
+      <span class="o">&lt;</span><span class="nt">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nt">a</span> <span class="nt">href</span><span class="o">=</span><span class="s1">"http://localhost:4000/tags#sample"</span><span class="o">&gt;</span>
+          <span class="nt">sample</span>
+        <span class="o">&lt;/</span><span class="nt">a</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="nt">li</span><span class="o">&gt;</span>
+      
+      <span class="o">&lt;</span><span class="nt">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nt">a</span> <span class="nt">href</span><span class="o">=</span><span class="s1">"http://localhost:4000/tags#document"</span><span class="o">&gt;</span>
+          <span class="nt">document</span>
+        <span class="o">&lt;/</span><span class="nt">a</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="nt">li</span><span class="o">&gt;</span>
+      
+    <span class="o">&lt;/</span><span class="nt">ul</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"entry"</span><span class="o">&gt;</span>
+<span class="o">&lt;!</span><span class="nt">--</span> <span class="err">正文开头</span> <span class="nt">--</span><span class="o">&gt;</span>
+   
+    <span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="err">上传于</span><span class="nt">2020</span><span class="o">/</span><span class="nt">6</span><span class="o">/</span><span class="nt">16</span><span class="err">，仅供测试用</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+
+  <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+
+  
+  
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"comments"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"gitalk-container"</span><span class="o">&gt;&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">script</span><span class="o">&gt;</span>
+        <span class="nt">const</span> <span class="nt">gitalk</span> <span class="o">=</span> <span class="nt">new</span> <span class="nt">Gitalk</span><span class="o">(</span><span class="p">{</span>
+          <span class="py">clientID</span><span class="p">:</span> <span class="s1">"f2cc1434697010b42873"</span><span class="p">,</span>
+          <span class="n">clientSecret</span><span class="p">:</span> <span class="s1">"50ff590e9ecbf9d94b330da8c4b30291b3bbe2cb"</span><span class="p">,</span>
+          <span class="n">repo</span><span class="p">:</span> <span class="s1">"mxtremist.github.io"</span><span class="p">,</span>
+          <span class="n">owner</span><span class="p">:</span> <span class="s1">"MXtremist"</span><span class="p">,</span>
+          <span class="n">admin</span><span class="p">:</span> <span class="p">[</span><span class="s1">"MXtremist"</span><span class="p">],</span>
+          <span class="n">id</span><span class="p">:</span> <span class="n">window</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">pathname</span><span class="p">,</span>      <span class="p">//</span> <span class="n">Ensure</span> <span class="n">uniqueness</span> <span class="n">and</span> <span class="n">length</span> <span class="n">less</span> <span class="n">than</span> <span class="m">50</span>
+          <span class="n">distractionFreeMode</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>  <span class="p">//</span> <span class="n">Facebook-like</span> <span class="n">distraction</span> <span class="n">free</span> <span class="n">mode</span>
+          <span class="n">title</span><span class="p">:</span> <span class="s1">"第一篇文档"</span><span class="p">,</span>
+          <span class="n">language</span><span class="p">:</span> <span class="s1">"zh-CN"</span><span class="p">,</span>
+
+        <span class="p">}</span><span class="o">)</span>
+        
+        <span class="nt">gitalk</span><span class="nc">.render</span><span class="o">(</span><span class="s2">'gitalk-container'</span><span class="o">)</span>
+    <span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="nt">article</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"pagination"</span><span class="o">&gt;</span>
+  
+  
+    <span class="o">&lt;</span><span class="nt">span</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"next"</span> <span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nt">a</span> <span class="nt">href</span><span class="o">=</span><span class="s1">"http://localhost:4000/howtobuild/"</span><span class="o">&gt;</span>
+        <span class="err">下一篇</span> <span class="err">→</span>
+      <span class="o">&lt;/</span><span class="nt">a</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+  
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">async</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">align</span><span class="o">=</span><span class="s1">"center"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
+		<span class="err">本文阅读量</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>插入如下代码：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+	<span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">require</span> <span class="nt">APlayer</span> <span class="nt">--</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s1">"stylesheet"</span> <span class="nt">href</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">require</span> <span class="nt">MetingJS</span> <span class="nt">--</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nt">meting-js</span>
+	<span class="nt">server</span><span class="o">=</span><span class="s1">"netease"</span>
+	<span class="nt">type</span><span class="o">=</span><span class="nt">song</span>
+	<span class="nt">id</span><span class="o">=</span><span class="nt">1354634080</span>
+	<span class="nt">autoplay</span><span class="o">=</span><span class="nt">true</span>
+	<span class="nt">theme</span><span class="o">=</span><span class="nf">#0b7285</span>
+	<span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">meting-js</span><span class="o">&gt;</span>
+ 
+</code></pre></div></div>
+
+<p>这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。</p>
+
+<p>在文章的<code class="language-plaintext highlighter-rouge">markdown</code>文件开头layout内添加变量music-type和music-id，前者可以为<code class="language-plaintext highlighter-rouge">song</code>, <code class="language-plaintext highlighter-rouge">playlist</code>, <code class="language-plaintext highlighter-rouge">album</code>, <code class="language-plaintext highlighter-rouge">search</code>, <code class="language-plaintext highlighter-rouge">artist</code>，指明播放类型，后者为id代码。以网易云音乐为例，如果我想要播放<a href="https://music.163.com/#/song?id=1354634080">Bloom</a>这首歌，网址：https://music.163.com/#/song?id=1354634080，就添加：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">music</span><span class="o">-</span><span class="nx">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">song</span><span class="dl">"</span>
+<span class="nx">music</span><span class="o">-</span><span class="nx">id</span><span class="p">:</span> <span class="mi">1354634080</span>
+</code></pre></div></div>
+
+<p>而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：</p>
+
+<p><img src="https://i.loli.net/2020/06/19/yv8sRatbWrfjNHS.png" /></p>
+
+<h3 id="其他自定义">其他自定义</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>修改属性</strong></th>
+      <th style="text-align: center"><strong>文件位置</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">主题颜色</td>
+      <td style="text-align: center">_sass/_variables.scss</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">主页</td>
+      <td style="text-align: center">index.html</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">文章页</td>
+      <td style="text-align: center">_layouts/post.html</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sidebar</td>
+      <td style="text-align: center">_includes/nav.html</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="更新日志">更新日志</h2>
 
@@ -641,6 +1167,22 @@ footer-links:
 
 <ul>
   <li>调整了搜索框的样式</li>
+</ul>
+
+<blockquote>
+  <p>2020-6-19</p>
+</blockquote>
+
+<p>添加：</p>
+
+<ul>
+  <li>添加了音乐播放器</li>
+</ul>
+
+<p>修改：</p>
+
+<ul>
+  <li>修改了主题颜色</li>
 </ul>
 
 <h2 id="致谢">致谢</h2>
@@ -695,7 +1237,7 @@ footer-links:
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 <div align="center">
-	<span id="busuanzi_container_page_pv" style="font-family:Consolas;color:rgba(16,149,113,.6);font-size:12px;">
+	<span id="busuanzi_container_page_pv" style="font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;">
 		本文阅读量:<span id="busuanzi_value_page_pv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
 	</span>
 </div>
