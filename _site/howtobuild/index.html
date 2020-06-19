@@ -497,11 +497,19 @@ footer-links:
   <div class="entry">
 <!-- 在正文开头添加网易云音乐插件 -->
   
-    <!-- cloud music -->
-<!-- auto=1 可以控制自动播放与否，当值为 1 即打开网页就自动播放，值为 0 时需要访客手动点击播放 -->
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86
-        src="//music.163.com/outchain/player?type=2&id=1354634080&auto=1&height=66">
-</iframe>
+    <!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+	server="netease"
+	type=song
+	id=1354634080
+	autoplay=true
+	>
+</meting-js>
    
     <p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
 
