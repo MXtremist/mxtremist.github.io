@@ -38,6 +38,20 @@ layout: default
   })
 </script>
 
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<meting-js
+	server="netease"
+	type="playlist"
+	id=2017713429
+	autoplay=true
+	theme=#0b7285
+>
+</meting-js>
+
 {% if site.posts.size == 0 %}
   <h2>No post found</h2>
 {% endif %}

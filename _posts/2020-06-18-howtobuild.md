@@ -196,12 +196,12 @@ footer-links:
 <!-- 这里是正文开头 -->
 ```
 
-插入如下代码：
+插入如下代码：(在每段前添加\{和% )
 
 ```css
-{% if page.music-id %}
-	{% include cloud-music.html %}
-{% endif %} 
+if page.music-id %}
+	in clude cloud-music.html %}
+endif %} 
 ```
 
 这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。
@@ -277,7 +277,7 @@ music-id: 1354634080
 
 
 
-## 致谢
+# 致谢
 
 - [Jekyll](https://github.com/jekyll/jekyll) - 这是本站存在的根基
 - [LOFFER](https://github.com/FromEndWorld/LOFFER) - 提供了基础框架及教程

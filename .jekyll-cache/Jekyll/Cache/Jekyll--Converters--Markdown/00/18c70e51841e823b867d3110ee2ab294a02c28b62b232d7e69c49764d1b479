@@ -1,18 +1,18 @@
-I"�^<p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
+I"l[<p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
 
-<h2 id="开始">开始</h2>
+<h1 id="开始">开始</h1>
 
 <p>想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（<del>贫穷</del>）一直没有实现。偶然了解到<a href="https://pages.github.com/">GitHub Pages</a>的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。</p>
 
-<h2 id="搭建并完善">搭建并完善</h2>
+<h1 id="搭建并完善">搭建并完善</h1>
 
-<h3 id="基于github-pages搭建个人博客">基于GitHub Pages搭建个人博客</h3>
+<h2 id="基于github-pages搭建个人博客">基于GitHub Pages搭建个人博客</h2>
 
 <p>关于基础的建立，可以参考<a href="https://fromendworld.github.io/LOFFER/document/">LOFFER使用基础教程</a>，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 <code class="language-plaintext highlighter-rouge">_config,yml</code> 和作者仓库的<a href="https://github.com/FromEndWorld/LOFFER/blob/master/README.md">README</a>中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork<a href="https://github.com/MXtremist/mxtremist.github.io">我的仓库</a>。</p>
 
 <p>按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 <code class="language-plaintext highlighter-rouge">name.github.io </code>，例如我的仓库就命名为 <code class="language-plaintext highlighter-rouge">mxtremist.github.io</code> ，这样我的博客首页就会是<a href="https://mxtremist.github.io/">mxtremist.github.io</a>。</p>
 
-<h3 id="属于自己的logo">属于自己的LOGO</h3>
+<h2 id="属于自己的logo">属于自己的LOGO</h2>
 
 <p>大触可以直接跳过，自己画一个就OK了。</p>
 
@@ -26,7 +26,7 @@
 
 <p>ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。</p>
 
-<h3 id="只支持微博还有一大堆不存在的社交链接">只支持微博，还有一大堆不存在的社交链接？</h3>
+<h2 id="只支持微博还有一大堆不存在的社交链接">只支持微博，还有一大堆不存在的社交链接？</h2>
 
 <p>原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？</p>
 
@@ -43,7 +43,7 @@
 
 <p>·<img src="https://i.loli.net/2020/06/19/zweYi6o5yhadATJ.png" /></p>
 
-<h3 id="添加搜索功能">添加搜索功能</h3>
+<h2 id="添加搜索功能">添加搜索功能</h2>
 
 <p>如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。</p>
 
@@ -91,7 +91,11 @@
 
 <p>其中第一部分为配置搜索框样式，如果想要自定义，可以参考<a href="https://www.cnblogs.com/laihuayan/archive/2012/07/27/2611111.html">CSS样式大全</a>。</p>
 
-<h3 id="那么有没有人看我的博客呢">那么有没有人看我的博客呢？</h3>
+<p>搜索框最终实现效果如下图：</p>
+
+<p><img src="https://i.loli.net/2020/06/19/a6YgRhGi7rEt3pV.png" /></p>
+
+<h2 id="那么有没有人看我的博客呢">那么有没有人看我的博客呢？</h2>
 
 <p>浏览量是衡量一个网站/一篇文章很重要的数据，那么有没有什么方便的工具呢？俗话说得好，<em>你不用 Google，你有 Bing…</em></p>
 
@@ -100,10 +104,10 @@
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">async</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">align</span><span class="o">=</span><span class="s1">"center"</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(16,149,113,.6);font-size:12px;"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
 		<span class="nt">Page</span> <span class="nt">View</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_site_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
 	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_uv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(16,149,113,.6);font-size:12px;"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_site_uv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
 		<span class="nt">Vistor</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_site_uv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
 	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
@@ -114,15 +118,21 @@
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">async</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">align</span><span class="o">=</span><span class="s1">"center"</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(16,149,113,.6);font-size:12px;"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_container_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:rgba(21,170,191,.6);font-size:12px;"</span><span class="o">&gt;</span>
 		<span class="err">本文阅读量</span><span class="o">:&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"busuanzi_value_page_pv"</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"font-family:Consolas;color:Silver;font-size:12px;"</span><span class="o">&gt;&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
 	<span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>就可以查看这篇文章的阅读量。</p>
+<p>就可以查看这篇文章的阅读量。这里是显示效果：</p>
 
-<h3 id="音乐播放器来">音乐播放器来!</h3>
+<p><img src="https://i.loli.net/2020/06/19/BJFc54oXneyUKhx.png" /></p>
+
+<p>显然，没什么人看我的博客XD。</p>
+
+<p>除此之外还有配置Google Analytics的傻瓜式操作，这里不再赘述了。</p>
+
+<h2 id="音乐播放器来">音乐播放器来!</h2>
 
 <p>如果你想要为自己的网站添加音乐播放器，那么慎用浏览器搜索教程！因为网上的教程绝大多数基于网易云音乐生成的外链播放器，然而，出于未知原因，在2019年前后，网易云音乐大规模地停止了对外链播放器的支持，<del>网易云biss！</del>，那么我们还有其他的方法么？</p>
 
@@ -150,28 +160,13 @@
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"entry"</span><span class="o">&gt;</span>
 <span class="o">&lt;!</span><span class="nt">--</span> <span class="err">这里是正文开头</span> <span class="nt">--</span><span class="o">&gt;</span>
-    
-<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>插入如下代码：</p>
+<p>插入如下代码：(在每段前添加{和% )</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-	<span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">require</span> <span class="nt">APlayer</span> <span class="nt">--</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">link</span> <span class="nt">rel</span><span class="o">=</span><span class="s1">"stylesheet"</span> <span class="nt">href</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
-<span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">require</span> <span class="nt">MetingJS</span> <span class="nt">--</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
-
-<span class="o">&lt;</span><span class="nt">meting-js</span>
-	<span class="nt">server</span><span class="o">=</span><span class="s1">"netease"</span>
-	<span class="nt">type</span><span class="o">=</span><span class="nt">song</span>
-	<span class="nt">id</span><span class="o">=</span><span class="nt">1354634080</span>
-	<span class="nt">autoplay</span><span class="o">=</span><span class="nt">true</span>
-	<span class="nt">theme</span><span class="o">=</span><span class="nf">#0b7285</span>
-	<span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="nt">meting-js</span><span class="o">&gt;</span>
- 
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">if</span> <span class="nt">page</span><span class="nc">.music-id</span> <span class="o">%</span><span class="err">}</span>
+	<span class="nt">in</span> <span class="nt">clude</span> <span class="nt">cloud-music</span><span class="nc">.html</span> <span class="o">%</span><span class="err">}</span>
+<span class="nt">endif</span> <span class="o">%</span><span class="err">}</span> 
 </code></pre></div></div>
 
 <p>这样，我们的音乐播放器就实现好了，现在需要为其指定播放的歌曲。</p>
@@ -182,9 +177,11 @@
 <span class="nx">music</span><span class="o">-</span><span class="nx">id</span><span class="p">:</span> <span class="mi">1354634080</span>
 </code></pre></div></div>
 
-<p>而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。</p>
+<p>而如果我想要播放歌单，把music-type改为”playlist”，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：</p>
 
-<h3 id="其他自定义">其他自定义</h3>
+<p><img src="https://i.loli.net/2020/06/19/eBV54iMRmIYFE3c.png" /></p>
+
+<h2 id="其他自定义">其他自定义</h2>
 
 <table>
   <thead>
@@ -213,65 +210,69 @@
   </tbody>
 </table>
 
-<h2 id="更新日志">更新日志</h2>
+<h1 id="更新日志">更新日志</h1>
+
+<h2 id="2020-6-16">2020-6-16</h2>
 
 <blockquote>
-  <p>2020-6-16</p>
+  <p>添加：</p>
+
+  <ul>
+    <li>
+      <p>个人博客正式上线</p>
+    </li>
+    <li>
+      <p>支持基于Disqus的评论</p>
+    </li>
+  </ul>
 </blockquote>
 
-<p>添加：</p>
-
-<ul>
-  <li>个人博客正式上线</li>
-  <li>支持基于Disqus的评论</li>
-</ul>
+<h2 id="2020-6-17">2020-6-17</h2>
 
 <blockquote>
-  <p>2020-6-17</p>
+  <p>添加：</p>
+
+  <ul>
+    <li>现在支持bilibili链接了</li>
+    <li>增加了搜索（仅支持搜索posts内文件名和tag）</li>
+    <li>增加了访问人数统计</li>
+  </ul>
+
+  <p>修改：</p>
+
+  <ul>
+    <li>替换了新的logo和favicon，自我感觉更好看了</li>
+    <li>将评论区由Disqus替换为Gittalk，然而依然被墙</li>
+  </ul>
 </blockquote>
 
-<p>添加：</p>
-
-<ul>
-  <li>现在支持bilibili链接了</li>
-  <li>增加了搜索（仅支持搜索posts内文件名和tag）</li>
-  <li>增加了访问人数统计</li>
-</ul>
-
-<p>修改：</p>
-
-<ul>
-  <li>替换了新的logo和favicon，自我感觉更好看了</li>
-  <li>将评论区由Disqus替换为Gittalk，然而依然被墙</li>
-</ul>
+<h2 id="2020-6-18">2020-6-18</h2>
 
 <blockquote>
-  <p>2020-6-18</p>
+  <p>修改：</p>
+
+  <ul>
+    <li>调整了搜索框的样式</li>
+  </ul>
 </blockquote>
 
-<p>修改：</p>
-
-<ul>
-  <li>调整了搜索框的样式</li>
-</ul>
+<h2 id="2020-6-19">2020-6-19</h2>
 
 <blockquote>
-  <p>2020-6-19</p>
+  <p>添加：</p>
+
+  <ul>
+    <li>添加了音乐播放器</li>
+  </ul>
+
+  <p>修改：</p>
+
+  <ul>
+    <li>修改了主题颜色</li>
+  </ul>
 </blockquote>
 
-<p>添加：</p>
-
-<ul>
-  <li>添加了音乐播放器</li>
-</ul>
-
-<p>修改：</p>
-
-<ul>
-  <li>修改了主题颜色</li>
-</ul>
-
-<h2 id="致谢">致谢</h2>
+<h1 id="致谢">致谢</h1>
 
 <ul>
   <li><a href="https://github.com/jekyll/jekyll">Jekyll</a> - 这是本站存在的根基</li>
