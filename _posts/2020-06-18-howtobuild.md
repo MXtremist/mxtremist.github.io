@@ -194,8 +194,6 @@ footer-links:
 ```css
 <div class="entry">
 <!-- 这里是正文开头 -->
-    {{ content }}
-</div>
 ```
 
 插入如下代码：
