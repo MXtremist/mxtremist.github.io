@@ -1,6 +1,6 @@
 ---
 layout:  post
-title:  RE: 从零开始的搭建个人博客生活
+title:  从零开始的搭建个人博客生活
 date:  2020-06-18
 Author:  MXtremist
 categories: 
