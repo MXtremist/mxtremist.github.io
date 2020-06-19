@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>从零开始的搭建个人博客生活 – MXtremist – 人生天地间，忽如远行客。</title>
+
+      <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="在这里记录和分享我的搭建经验，应该不会持续更新
+
+开始
+
+想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（贫穷）一直没有实现。偶然了解到GitHub Pages的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。
+
+搭建并完善
+
+基于GitHub Pages搭建个人博客
+
+关于基础的建立，可以参考LOFFER使用基础教程，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 _config,yml 和作者仓库的README中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork我的仓库。
+
+按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 name.github.io ，例如我的仓库就命名为 mxtremist.github.io ，这样我的博客首页就会是mxtremist.github.io。
+
+属于自己的LOGO
+
+大触可以直接跳过，自己画一个就OK了。
+
+关于logo的制作，这里推荐一个我认为比较好用的网站：DesignEvo ，使用免费且有较多个性化选择，唯一的问题是不支持背景透明（也可能是我没看到），如果使用不规则的图形，比如我这样的，可能需要背景透明才会更好看，这里推荐一个Windows下好用的icon编辑软件icoFX，这个软件是我当初在个性化Windows 10的时候发现的，改天我可能会写一个关于美化Win10的文章。
+
+编辑好自己的logo和favicon（用于显示在浏览器角标）之后，需要上传到图床，这里推荐SM.MS，这也是老牌图床了，在国内好用且免费。
+
+
+
+上传好后点击Image URL，将图片链接粘贴到 _config.yml 中对应位置即可。注意对于任何的改动，可能都需要几分钟才能在自己的主页刷新，所以如果有需求可以考虑增加本地博客预览功能，具体实现请问搜索引擎。
+
+ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。
+
+只支持微博，还有一大堆不存在的社交链接？
+
+原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？
+
+根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&lt;path d=&gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？
+
+首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
+
+footer-links: 
+  weibo: xxxxxx # 请输入你的微博个性域名 
+  bilibili: xxxxxx # 这里填主站空间后面的数字   
+
+
+添加搜索功能
+
+如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。
+
+搜索功能由Simple-Jekyll-Search提供技术支持。点击右上角donwload，解压后将/example/js文件夹和/example/search.json文件上传到我们自己的仓库根目录下即可。
+
+接下来需要在想要显示的页面配置搜索框，例如想要在主页，那么就打开index.html，粘贴以下两端代码：
+
+&lt;!--配置搜索框样式--&gt;
+&lt;div class="search-container"&gt;
+  &lt;input type="text" id="search-input" placeholder="search blog posts..." style="
+    width: 100%;
+    height: 34px;
+    color: #109599;
+    background-color: rgba(239,242,245,.2);
+    line-height: 32px;
+    padding: 0px 16px;
+    margin: 4px 1px;
+    border: 1px solid #109599;
+    border-radius: 17px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    "&gt;
+  &lt;ul id="results-container"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;!--配置搜索功能--&gt;
+&lt;script src="/js/simple-jekyll-search.min.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+	window.simpleJekyllSearch = new SimpleJekyllSearch({
+	searchInput: document.getElementById('search-input'),
+	resultsContainer: document.getElementById('results-container'),
+	json: '/search.json',
+	searchResultTemplate: '&lt;li&gt;&lt;a href="{url}?query={query}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;',
+	limit: 5,
+	fuzzy: false,
+	exclude: ['Welcome']
+  })
+&lt;/script&gt;
+
+
+其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。
+
+更新日志
+
+
+  2020-6-16
+
+
+添加：
+
+
+  个人博客正式上线
+  支持基于Disqus的评论
+
+
+
+  2020-6-17
+
+
+添加：
+
+
+  现在支持bilibili链接了
+  增加了搜索（仅支持搜索posts内文件名和tag）
+  增加了访问人数统计
+
+
+修改：
+
+
+  替换了新的logo和favicon，自我感觉更好看了
+  将评论区由Disqus替换为Gittalk，然而依然被墙
+
+
+
+  2020-6-18
+
+
+修改：
+
+
+  调整了搜索框的样式
+
+
+致谢
+
+
+  Jekyll - 这是本站存在的根基
+  LOFFER - 提供了基础框架及教程
+  DesignEvo - 在线制作免费好康的logo
+  vectorizer - 常见图片格式转换为真·SVG
+  SM.MS - 免费好用没被墙的图床
+  Simple-Jekyll-Search - 搜索功能支持
+  不蒜子 - 访问计数功能支持
+
+" />
+    <meta property="og:description" content="在这里记录和分享我的搭建经验，应该不会持续更新
+
+开始
+
+想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（贫穷）一直没有实现。偶然了解到GitHub Pages的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。
+
+搭建并完善
+
+基于GitHub Pages搭建个人博客
+
+关于基础的建立，可以参考LOFFER使用基础教程，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 _config,yml 和作者仓库的README中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork我的仓库。
+
+按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 name.github.io ，例如我的仓库就命名为 mxtremist.github.io ，这样我的博客首页就会是mxtremist.github.io。
+
+属于自己的LOGO
+
+大触可以直接跳过，自己画一个就OK了。
+
+关于logo的制作，这里推荐一个我认为比较好用的网站：DesignEvo ，使用免费且有较多个性化选择，唯一的问题是不支持背景透明（也可能是我没看到），如果使用不规则的图形，比如我这样的，可能需要背景透明才会更好看，这里推荐一个Windows下好用的icon编辑软件icoFX，这个软件是我当初在个性化Windows 10的时候发现的，改天我可能会写一个关于美化Win10的文章。
+
+编辑好自己的logo和favicon（用于显示在浏览器角标）之后，需要上传到图床，这里推荐SM.MS，这也是老牌图床了，在国内好用且免费。
+
+
+
+上传好后点击Image URL，将图片链接粘贴到 _config.yml 中对应位置即可。注意对于任何的改动，可能都需要几分钟才能在自己的主页刷新，所以如果有需求可以考虑增加本地博客预览功能，具体实现请问搜索引擎。
+
+ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。
+
+只支持微博，还有一大堆不存在的社交链接？
+
+原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？
+
+根目录下 /include/svg-icons 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为https://space.bilibili.com/169345992，我们用CV大法新添几行代码，再把其中的&lt;path d=&gt; 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，这里可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？
+
+首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用&lt;image&gt;标签加上一个base64图片，而我们需要的是&lt;svg&gt; + &lt;path d=&gt;这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的网站。搞定图标之后，还需要配置 _config,yml 文件。以bilibili为例，在foot-links中添加：
+
+footer-links: 
+  weibo: xxxxxx # 请输入你的微博个性域名 
+  bilibili: xxxxxx # 这里填主站空间后面的数字   
+
+
+添加搜索功能
+
+如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。
+
+搜索功能由Simple-Jekyll-Search提供技术支持。点击右上角donwload，解压后将/example/js文件夹和/example/search.json文件上传到我们自己的仓库根目录下即可。
+
+接下来需要在想要显示的页面配置搜索框，例如想要在主页，那么就打开index.html，粘贴以下两端代码：
+
+&lt;!--配置搜索框样式--&gt;
+&lt;div class="search-container"&gt;
+  &lt;input type="text" id="search-input" placeholder="search blog posts..." style="
+    width: 100%;
+    height: 34px;
+    color: #109599;
+    background-color: rgba(239,242,245,.2);
+    line-height: 32px;
+    padding: 0px 16px;
+    margin: 4px 1px;
+    border: 1px solid #109599;
+    border-radius: 17px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    "&gt;
+  &lt;ul id="results-container"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;!--配置搜索功能--&gt;
+&lt;script src="/js/simple-jekyll-search.min.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+	window.simpleJekyllSearch = new SimpleJekyllSearch({
+	searchInput: document.getElementById('search-input'),
+	resultsContainer: document.getElementById('results-container'),
+	json: '/search.json',
+	searchResultTemplate: '&lt;li&gt;&lt;a href="{url}?query={query}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;',
+	limit: 5,
+	fuzzy: false,
+	exclude: ['Welcome']
+  })
+&lt;/script&gt;
+
+
+其中第一部分为配置搜索框样式，如果想要自定义，可以参考CSS样式大全。
+
+更新日志
+
+
+  2020-6-16
+
+
+添加：
+
+
+  个人博客正式上线
+  支持基于Disqus的评论
+
+
+
+  2020-6-17
+
+
+添加：
+
+
+  现在支持bilibili链接了
+  增加了搜索（仅支持搜索posts内文件名和tag）
+  增加了访问人数统计
+
+
+修改：
+
+
+  替换了新的logo和favicon，自我感觉更好看了
+  将评论区由Disqus替换为Gittalk，然而依然被墙
+
+
+
+  2020-6-18
+
+
+修改：
+
+
+  调整了搜索框的样式
+
+
+致谢
+
+
+  Jekyll - 这是本站存在的根基
+  LOFFER - 提供了基础框架及教程
+  DesignEvo - 在线制作免费好康的logo
+  vectorizer - 常见图片格式转换为真·SVG
+  SM.MS - 免费好用没被墙的图床
+  Simple-Jekyll-Search - 搜索功能支持
+  不蒜子 - 访问计数功能支持
+
+" />
+    
+    <meta name="author" content="MXtremist" />
+
+    
+    <meta property="og:title" content="从零开始的搭建个人博客生活" />
+    <meta property="twitter:title" content="从零开始的搭建个人博客生活" />
+    
+  <!-- Async font loading -->
+<script>
+  window.WebFontConfig = {
+      custom: {
+          families: ['Spoqa Han Sans:100,300,400,700'],
+          urls: ['https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css']
+      },
+      timeout: 60000
+  };
+  (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+  })(document);
+</script>
+
+<!--adobe fonts-->
+<script>
+    (function(d) {
+      var config = {
+        kitId: 'vbt3gjx',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+</script> 
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="MXtremist - 人生天地间，忽如远行客。" href="/feed.xml" />
+  <link rel="shortcut icon" href="https://i.loli.net/2020/06/17/j1OM7SmHN6iFd28.png">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?...">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+
+  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+
+</head>
+
+  <body>
+    <div class="wrapper-sidebar">
+  <header class="sidebar clearfix">
+    <div class="site-info">
+      
+        <a href="/" class="site-avatar"><img src="https://i.loli.net/2020/06/17/giotmpW6bLy4YcD.png" /></a>
+       
+      <h1 class="site-name"><a href="/">MXtremist</a></h1>
+      <p class="site-description">人生天地间，忽如远行客。</p>
+    </div>
+  </header>
+
+  <div class="navlist">
+    <nav>
+      
+      
+      <a href="/">首页</a>
+      
+      
+      
+      <a href="/about">关于</a>
+      
+      
+      
+      <a href="/archive">归档</a>
+      
+      
+      
+      <a href="/tags">标签</a>
+      
+      
+    </nav>
+  </div>
+
+  <div class="wrapper-footer-desktop">
+    <footer class="footer">
+      <!-- Refer to https://codepen.io/ruandre/pen/howFi -->
+<ul class="svg-icon">
+
+  
+  <li><a href="https://www.weibo.com/5718430861" class="icon-1 weibo" title="Weibo"><svg viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></svg></a></li>
+  
+  
+  
+
+  
+
+  
+  <li><a href="mailto:xue.fyang@foxmail.com" class="icon-8 email" title="Email"><svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg><!--[if lt IE 9]><em>Email</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+  <li><a href="https://github.com/MXtremist" class="icon-13 github" title="GitHub"><svg viewBox="0 0 512 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg><!--[if lt IE 9]><em>GitHub</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <li><a href="https://space.bilibili.com/169345992" class="icon-29 bilibili" title="bilibili"><svg viewBox="0 0 512 512">
+  <path d="M165 496 c-64 -29 -128 -101 -145 -161 -15 -54 -8 -140 14 -184 21 -39 78 -96 117 -117 44 -22 130 -29 184 -14 94 26 185 143 185 237 0 103 -71 207 -167 243 -70 26 -127 25 -188 -4z m105 -175 c0 -79 6 -101 27 -101 25 0 63 47 63 80 0 16 5 30 10 30 15 0 12 -47 -6 -81 -8 -17 -30 -37 -50 -45 -45 -19 -48 -54 -4 -54 17 0 30 -4 30 -10 0 -6 -33 -10 -80 -10 -78 0 -112 16 -48 22 47 4 49 33 5 52 -19 7 -42 24 -51 37 -17 25 -23 94 -6 84 6 -3 10 -17 10 -29 0 -31 36 -76 61 -76 17 0 19 8 19 85 0 50 4 85 10 85 6 0 10 -30 10 -69z"/>
+    </svg><!--[if lt IE 9]><em>bilibili</em><![endif]--></a></li>
+  
+
+  
+  <li><a href="/feed.xml" class="icon-21 rss" title="RSS"><svg viewBox="0 0 512 512"><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634-5.214-80.05-69.243-143.92-149.123-149.123-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425 110.546 5.974 198.997 94.536 204.964 204.964.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432 167.83 6.025 302.21 141.191 308.205 308.205.232 6.449-4.978 11.787-11.432 11.787z"/></svg><!--[if lt IE 9]><em>RSS</em><![endif]--></a></li>
+  
+  
+</ul>
+
+
+
+<p>Copyright (c) 2020 啦啦啦</p>
+
+    </footer>
+  </div>
+</div>
+
+    
+      <aside class="toc">
+        <ul>
+  <li><a href="#">从零开始的搭建个人博客生活</a>
+    <ul>
+      <li><a href="#开始">开始</a></li>
+      <li><a href="#搭建并完善">搭建并完善</a>
+        <ul>
+          <li><a href="#基于github-pages搭建个人博客">基于GitHub Pages搭建个人博客</a></li>
+          <li><a href="#属于自己的logo">属于自己的LOGO</a></li>
+          <li><a href="#只支持微博还有一大堆不存在的社交链接">只支持微博，还有一大堆不存在的社交链接？</a></li>
+          <li><a href="#添加搜索功能">添加搜索功能</a></li>
+        </ul>
+      </li>
+      <li><a href="#更新日志">更新日志</a></li>
+      <li><a href="#致谢">致谢</a></li>
+    </ul>
+  </li>
+</ul>
+      </aside>
+    
+
+    <div id="main" role="main" class="wrapper-content">
+      <div class="container">
+        <article class="posts">
+  <h1>从零开始的搭建个人博客生活</h1>
+
+  <div clsss="meta">
+    <span class="author">
+      
+    </span>
+
+    <span class="date">
+      2020-06-18
+    </span>
+
+    <ul class="tag">
+      
+      <li>
+        <a href="http://localhost:4000/tags#notes">
+          notes
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="entry">
+    <p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
+
+<h2 id="开始">开始</h2>
+
+<p>想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（<del>贫穷</del>）一直没有实现。偶然了解到<a href="https://pages.github.com/">GitHub Pages</a>的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。</p>
+
+<h2 id="搭建并完善">搭建并完善</h2>
+
+<h3 id="基于github-pages搭建个人博客">基于GitHub Pages搭建个人博客</h3>
+
+<p>关于基础的建立，可以参考<a href="https://fromendworld.github.io/LOFFER/document/">LOFFER使用基础教程</a>，本站使用的模板完全基于LOFFER。教程中包括评论区的建立等内容都非常完善且易懂，即使没有提到的东西在 <code class="language-plaintext highlighter-rouge">_config,yml</code> 和作者仓库的<a href="https://github.com/FromEndWorld/LOFFER/blob/master/README.md">README</a>中也有非常详尽的注释。本文仅会分享一些我个人对原始模板的个性化。如果你想要直接使用我的一些个性化设置，也欢迎Fork<a href="https://github.com/MXtremist/mxtremist.github.io">我的仓库</a>。</p>
+
+<p>按照作者的步骤，很容易就能顺利搭建好个人博客。注意在为仓库（Repository）命名时，建议命名为 <code class="language-plaintext highlighter-rouge">name.github.io </code>，例如我的仓库就命名为 <code class="language-plaintext highlighter-rouge">mxtremist.github.io</code> ，这样我的博客首页就会是<a href="https://mxtremist.github.io/">mxtremist.github.io</a>。</p>
+
+<h3 id="属于自己的logo">属于自己的LOGO</h3>
+
+<p>大触可以直接跳过，自己画一个就OK了。</p>
+
+<p>关于logo的制作，这里推荐一个我认为比较好用的网站：<a href="https://www.designevo.com/cn/">DesignEvo</a> ，使用免费且有较多个性化选择，唯一的问题是不支持背景透明（也可能是我没看到），如果使用不规则的图形，比如我这样的，可能需要背景透明才会更好看，这里推荐一个Windows下好用的icon编辑软件<a href="https://icofx.ro/downloads.html">icoFX</a>，这个软件是我当初在个性化Windows 10的时候发现的，改天我可能会写一个关于美化Win10的文章。</p>
+
+<p>编辑好自己的logo和favicon（用于显示在浏览器角标）之后，需要上传到图床，这里推荐<a href="https://sm.ms/">SM.MS</a>，这也是老牌图床了，在国内好用且免费。</p>
+
+<p><img src="https://i.loli.net/2020/06/18/lDKINy6tHE23aMO.png" alt="ImageURL" /></p>
+
+<p>上传好后点击Image URL，将图片链接粘贴到 <code class="language-plaintext highlighter-rouge">_config.yml</code> 中对应位置即可。注意对于任何的改动，可能都需要几分钟才能在自己的主页刷新，所以如果有需求可以考虑增加本地博客预览功能，具体实现请问搜索引擎。</p>
+
+<p>ps：如果是Windows端浏览器，建议使用Ctrl+R强制刷新。</p>
+
+<h3 id="只支持微博还有一大堆不存在的社交链接">只支持微博，还有一大堆不存在的社交链接？</h3>
+
+<p>原生模板中的社交链接仅有微博、GitHub和那些不存在的网站，那么如何进行自定义呢？</p>
+
+<p>根目录下 <code class="language-plaintext highlighter-rouge">/include/svg-icons</code> 对应各个链接及其SVG矢量图标，以bilibili为例，只需要它的个人主页格式为<code class="language-plaintext highlighter-rouge">https://space.bilibili.com/169345992</code>，我们用CV大法新添几行代码，再把其中的<code class="language-plaintext highlighter-rouge">&lt;path d=&gt;</code> 修改为自己想要的SVG图片的相关内容即可。图标的大小最好为48x48 px。现在的问题是如何得到SVG图标，<a href="https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/brands">这里</a>可以找到大部分品牌的SVG素材，然而如果没有那你想要的呢？</p>
+
+<p>首先问问搜索引擎，我在网上找到了很多在线将图片转为SVG格式的网站，但是绝大多数都是“假的”SVG，即采用<code class="language-plaintext highlighter-rouge">&lt;image&gt;</code>标签加上一个base64图片，而我们需要的是<code class="language-plaintext highlighter-rouge">&lt;svg&gt; + &lt;path d=&gt;</code>这样用path画出路线实现矢量缩放。最终，我找到了一个很方便的<a href="https://www.vectorizer.io/">网站</a>。搞定图标之后，还需要配置 <code class="language-plaintext highlighter-rouge">_config,yml</code> 文件。以bilibili为例，在<code class="language-plaintext highlighter-rouge">foot-links</code>中添加：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">footer-links</span><span class="o">:</span> 
+  <span class="nt">weibo</span><span class="o">:</span> <span class="nt">xxxxxx</span> <span class="err">#</span> <span class="err">请输入你的微博个性域名</span> 
+  <span class="nt">bilibili</span><span class="o">:</span> <span class="nt">xxxxxx</span> <span class="err">#</span> <span class="err">这里填主站空间后面的数字</span>   
+</code></pre></div></div>
+
+<h3 id="添加搜索功能">添加搜索功能</h3>
+
+<p>如果有一天，我的博客写了成千上万篇，那么我该如何快速找到我想要的博客呢？归档和标签是一个好方法，但是如果同一个tag内依然有大量文章，或者不记得是哪一年的了呢？这时候就需要一个简单的搜索功能。</p>
+
+<p>搜索功能由<a href="https://github.com/christian-fei/Simple-Jekyll-Search">Simple-Jekyll-Search</a>提供技术支持。点击右上角donwload，解压后将<code class="language-plaintext highlighter-rouge">/example/js</code>文件夹和<code class="language-plaintext highlighter-rouge">/example/search.json</code>文件上传到我们自己的仓库根目录下即可。</p>
+
+<p>接下来需要在想要显示的页面配置搜索框，例如想要在主页，那么就打开<code class="language-plaintext highlighter-rouge">index.html</code>，粘贴以下两端代码：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nt">--</span><span class="err">配置搜索框样式</span><span class="nt">--</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s1">"search-container"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">input</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text"</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"search-input"</span> <span class="nt">placeholder</span><span class="o">=</span><span class="s1">"search blog posts..."</span> <span class="nt">style</span><span class="o">=</span><span class="s1">"
+    width: 100%;
+    height: 34px;
+    color: #109599;
+    background-color: rgba(239,242,245,.2);
+    line-height: 32px;
+    padding: 0px 16px;
+    margin: 4px 1px;
+    border: 1px solid #109599;
+    border-radius: 17px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 12px rgba(16,149,113,.7);
+    "</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">ul</span> <span class="nt">id</span><span class="o">=</span><span class="s1">"results-container"</span><span class="o">&gt;&lt;/</span><span class="nt">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;!</span><span class="nt">--</span><span class="err">配置搜索功能</span><span class="nt">--</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"/js/simple-jekyll-search.min.js"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nt">script</span><span class="o">&gt;</span>
+	<span class="nt">window</span><span class="nc">.simpleJekyllSearch</span> <span class="o">=</span> <span class="nt">new</span> <span class="nt">SimpleJekyllSearch</span><span class="o">(</span><span class="p">{</span>
+	<span class="py">searchInput</span><span class="p">:</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">'search-input'</span><span class="p">),</span>
+	<span class="n">resultsContainer</span><span class="p">:</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">'results-container'</span><span class="p">),</span>
+	<span class="n">json</span><span class="p">:</span> <span class="s2">'/search.json'</span><span class="p">,</span>
+	<span class="n">searchResultTemplate</span><span class="p">:</span> <span class="s2">'&lt;li&gt;&lt;a href="{url}?query={query}" title="{desc}"&gt;{title}&lt;/a&gt;&lt;/li&gt;'</span><span class="p">,</span>
+	<span class="n">limit</span><span class="p">:</span> <span class="m">5</span><span class="p">,</span>
+	<span class="n">fuzzy</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+	<span class="n">exclude</span><span class="p">:</span> <span class="p">[</span><span class="s2">'Welcome'</span><span class="p">]</span>
+  <span class="p">}</span><span class="o">)</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>其中第一部分为配置搜索框样式，如果想要自定义，可以参考<a href="https://www.cnblogs.com/laihuayan/archive/2012/07/27/2611111.html">CSS样式大全</a>。</p>
+
+<h2 id="更新日志">更新日志</h2>
+
+<blockquote>
+  <p>2020-6-16</p>
+</blockquote>
+
+<p>添加：</p>
+
+<ul>
+  <li>个人博客正式上线</li>
+  <li>支持基于Disqus的评论</li>
+</ul>
+
+<blockquote>
+  <p>2020-6-17</p>
+</blockquote>
+
+<p>添加：</p>
+
+<ul>
+  <li>现在支持bilibili链接了</li>
+  <li>增加了搜索（仅支持搜索posts内文件名和tag）</li>
+  <li>增加了访问人数统计</li>
+</ul>
+
+<p>修改：</p>
+
+<ul>
+  <li>替换了新的logo和favicon，自我感觉更好看了</li>
+  <li>将评论区由Disqus替换为Gittalk，然而依然被墙</li>
+</ul>
+
+<blockquote>
+  <p>2020-6-18</p>
+</blockquote>
+
+<p>修改：</p>
+
+<ul>
+  <li>调整了搜索框的样式</li>
+</ul>
+
+<h2 id="致谢">致谢</h2>
+
+<ul>
+  <li><a href="https://github.com/jekyll/jekyll">Jekyll</a> - 这是本站存在的根基</li>
+  <li><a href="https://github.com/FromEndWorld/LOFFER">LOFFER</a> - 提供了基础框架及教程</li>
+  <li><a href="https://www.designevo.com/cn/">DesignEvo</a> - 在线制作免费好康的logo</li>
+  <li><a href="https://www.vectorizer.io/">vectorizer</a> - 常见图片格式转换为真·SVG</li>
+  <li><a href="https://sm.ms/">SM.MS</a> - 免费好用没被墙的图床</li>
+  <li><a href="https://github.com/christian-fei/Simple-Jekyll-Search">Simple-Jekyll-Search</a> - 搜索功能支持</li>
+  <li><a href="http://busuanzi.ibruce.info/">不蒜子</a> - 访问计数功能支持</li>
+</ul>
+
+  </div>
+
+  
+  
+<div class="comments">
+    <div id="gitalk-container"></div>
+    <script>
+        const gitalk = new Gitalk({
+          clientID: "f2cc1434697010b42873",
+          clientSecret: "50ff590e9ecbf9d94b330da8c4b30291b3bbe2cb",
+          repo: "mxtremist.github.io",
+          owner: "MXtremist",
+          admin: ["MXtremist"],
+          id: window.location.pathname,      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false,  // Facebook-like distraction free mode
+          title: "从零开始的搭建个人博客生活",
+          language: "zh-CN",
+
+        })
+        
+        gitalk.render('gitalk-container')
+    </script>
+</div>
+
+</article>
+
+<div class="pagination">
+  
+    <span class="prev" >
+      <a href="http://localhost:4000/firstdoc/">
+        ← 上一篇
+      </a>
+    </span>
+  
+  
+</div>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-130578994-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/howtobuild/',
+		  'title': '从零开始的搭建个人博客生活'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+
+  
+  <script>
+    document.getElementById("main").classList.add("withtoc");
+  </script>
+  
+
+  <div class="wrapper-footer-mobile">
+    <footer class="footer">
+      <!-- Refer to https://codepen.io/ruandre/pen/howFi -->
+<ul class="svg-icon">
+
+  
+  <li><a href="https://www.weibo.com/5718430861" class="icon-1 weibo" title="Weibo"><svg viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></svg></a></li>
+  
+  
+  
+
+  
+
+  
+  <li><a href="mailto:xue.fyang@foxmail.com" class="icon-8 email" title="Email"><svg viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg><!--[if lt IE 9]><em>Email</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+  <li><a href="https://github.com/MXtremist" class="icon-13 github" title="GitHub"><svg viewBox="0 0 512 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg><!--[if lt IE 9]><em>GitHub</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <li><a href="https://space.bilibili.com/169345992" class="icon-29 bilibili" title="bilibili"><svg viewBox="0 0 512 512">
+  <path d="M165 496 c-64 -29 -128 -101 -145 -161 -15 -54 -8 -140 14 -184 21 -39 78 -96 117 -117 44 -22 130 -29 184 -14 94 26 185 143 185 237 0 103 -71 207 -167 243 -70 26 -127 25 -188 -4z m105 -175 c0 -79 6 -101 27 -101 25 0 63 47 63 80 0 16 5 30 10 30 15 0 12 -47 -6 -81 -8 -17 -30 -37 -50 -45 -45 -19 -48 -54 -4 -54 17 0 30 -4 30 -10 0 -6 -33 -10 -80 -10 -78 0 -112 16 -48 22 47 4 49 33 5 52 -19 7 -42 24 -51 37 -17 25 -23 94 -6 84 6 -3 10 -17 10 -29 0 -31 36 -76 61 -76 17 0 19 8 19 85 0 50 4 85 10 85 6 0 10 -30 10 -69z"/>
+    </svg><!--[if lt IE 9]><em>bilibili</em><![endif]--></a></li>
+  
+
+  
+  <li><a href="/feed.xml" class="icon-21 rss" title="RSS"><svg viewBox="0 0 512 512"><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634-5.214-80.05-69.243-143.92-149.123-149.123-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425 110.546 5.974 198.997 94.536 204.964 204.964.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432 167.83 6.025 302.21 141.191 308.205 308.205.232 6.449-4.978 11.787-11.432 11.787z"/></svg><!--[if lt IE 9]><em>RSS</em><![endif]--></a></li>
+  
+  
+</ul>
+
+
+
+<p>Copyright (c) 2020 啦啦啦</p>
+
+    </footer>
+
+
+</html>
