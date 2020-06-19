@@ -217,7 +217,7 @@ music-id: 1354634080
 
 而如果我想要播放歌单，把music-type改为"playlist"，id改为歌单id即可。歌单id需要在网页版打开歌单查看网址。音乐播放器的效果如下图所示，可以说是非常的鹅妹子嘤啊：
 
-<img src="https://i.loli.net/2020/06/19/yv8sRatbWrfjNHS.png"/>
+<img src="https://i.loli.net/2020/06/19/eBV54iMRmIYFE3c.png"/>
 
 
 
