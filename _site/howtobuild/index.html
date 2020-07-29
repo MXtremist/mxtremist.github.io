@@ -173,7 +173,7 @@ footer-links:
 &lt;!-- 这里是正文开头 --&gt;
 
 
-插入如下代码：(在每段前添加{和% )
+插入如下代码：(在每行前添加{和% )
 
 if page.music-id %}
 	in clude cloud-music.html %}
@@ -220,6 +220,13 @@ music-id: 1354634080
     
   
 
+
+使用lateX：找到对应页，在MathJax位置插入如下代码：
+
+&lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt;&lt;/script&gt;
+
+
+本地：在根目录下执行命令jekyll server，然后访问http://127.0.0.1:4000/.
 
 更新日志
 
@@ -459,7 +466,7 @@ footer-links:
 &lt;!-- 这里是正文开头 --&gt;
 
 
-插入如下代码：(在每段前添加{和% )
+插入如下代码：(在每行前添加{和% )
 
 if page.music-id %}
 	in clude cloud-music.html %}
@@ -506,6 +513,13 @@ music-id: 1354634080
     
   
 
+
+使用lateX：找到对应页，在MathJax位置插入如下代码：
+
+&lt;script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt;&lt;/script&gt;
+
+
+本地：在根目录下执行命令jekyll server，然后访问http://127.0.0.1:4000/.
 
 更新日志
 
@@ -789,6 +803,7 @@ music-id: 1354634080
   </div>
   <div class="entry">
 <!-- 正文开头 -->
+
   
     <!-- require APlayer -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
@@ -969,7 +984,7 @@ music-id: 1354634080
 <span class="o">&lt;!</span><span class="nt">--</span> <span class="err">这里是正文开头</span> <span class="nt">--</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>插入如下代码：(在每段前添加{和% )</p>
+<p>插入如下代码：(在每行前添加{和% )</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">if</span> <span class="nt">page</span><span class="nc">.music-id</span> <span class="o">%</span><span class="err">}</span>
 	<span class="nt">in</span> <span class="nt">clude</span> <span class="nt">cloud-music</span><span class="nc">.html</span> <span class="o">%</span><span class="err">}</span>
@@ -1016,6 +1031,13 @@ music-id: 1354634080
     </tr>
   </tbody>
 </table>
+
+<p>使用lateX：找到对应页，在MathJax位置插入如下代码：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text/javascript"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>本地：在根目录下执行命令<code class="language-plaintext highlighter-rouge">jekyll server</code>，然后访问<code class="language-plaintext highlighter-rouge">http://127.0.0.1:4000/</code>.</p>
 
 <h1 id="更新日志">更新日志</h1>
 
@@ -1125,6 +1147,12 @@ music-id: 1354634080
       </a>
     </span>
   
+  
+    <span class="next" >
+      <a href="http://localhost:4000/cnnote/">
+        下一篇 →
+      </a>
+    </span>
   
 </div>
 

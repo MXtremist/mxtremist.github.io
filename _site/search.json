@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "计网复习笔记整理",
+      "category" : "",
+      "tags"     : "notes, study",
+      "url"      : "/cnnote/",
+      "date"     : "2020-07-27 00:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "从零开始的搭建个人博客生活",
       "category" : "",
       "tags"     : "notes",

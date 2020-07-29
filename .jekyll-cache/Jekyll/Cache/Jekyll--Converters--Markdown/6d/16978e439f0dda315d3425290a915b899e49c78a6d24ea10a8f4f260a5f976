@@ -1,4 +1,4 @@
-I"l[<p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
+I"�^<p>在这里记录和分享我的搭建经验，<del>应该不会</del>持续更新</p>
 
 <h1 id="开始">开始</h1>
 
@@ -162,7 +162,7 @@
 <span class="o">&lt;!</span><span class="nt">--</span> <span class="err">这里是正文开头</span> <span class="nt">--</span><span class="o">&gt;</span>
 </code></pre></div></div>
 
-<p>插入如下代码：(在每段前添加{和% )</p>
+<p>插入如下代码：(在每行前添加{和% )</p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">if</span> <span class="nt">page</span><span class="nc">.music-id</span> <span class="o">%</span><span class="err">}</span>
 	<span class="nt">in</span> <span class="nt">clude</span> <span class="nt">cloud-music</span><span class="nc">.html</span> <span class="o">%</span><span class="err">}</span>
@@ -209,6 +209,13 @@
     </tr>
   </tbody>
 </table>
+
+<p>使用lateX：找到对应页，在MathJax位置插入如下代码：</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">script</span> <span class="nt">src</span><span class="o">=</span><span class="s1">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="nt">type</span><span class="o">=</span><span class="s1">"text/javascript"</span><span class="o">&gt;&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>本地：在根目录下执行命令<code class="language-plaintext highlighter-rouge">jekyll server</code>，然后访问<code class="language-plaintext highlighter-rouge">http://127.0.0.1:4000/</code>.</p>
 
 <h1 id="更新日志">更新日志</h1>
 

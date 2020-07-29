@@ -228,6 +228,14 @@ music-id: 1354634080
 |    文章页    |  \_layouts/post.html   |
 |   sidebar    |  \_includes/nav.html   |
 
+使用lateX：找到对应页，在MathJax位置插入如下代码：
+
+```css
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+```
+
+本地：在根目录下执行命令`jekyll server`，然后访问`http://127.0.0.1:4000/`.
+
 
 
 # 更新日志
