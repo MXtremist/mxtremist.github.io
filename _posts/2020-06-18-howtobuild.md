@@ -15,6 +15,8 @@ comments:  true
 
 在这里记录和分享我的搭建经验，~~应该不会~~持续更新
 
+<!-- more -->
+
 # 开始
 
 想建自己的网站这个想法已经在我脑海里存留很久了，然而受限于服务器和域名的价格（~~贫穷~~）一直没有实现。偶然了解到[GitHub Pages](https://pages.github.com/)的存在之后，打算着手开始建立个人博客，可能会在这里发一些乱七八糟的东西。
@@ -228,13 +230,7 @@ music-id: 1354634080
 |    文章页    |  \_layouts/post.html   |
 |   sidebar    |  \_includes/nav.html   |
 
-使用lateX：找到对应页，在MathJax位置插入如下代码：
-
-```css
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-```
-
-本地：在根目录下执行命令`jekyll server`，然后访问`http://127.0.0.1:4000/`.
+本地预览：在根目录下执行命令`jekyll server`，然后访问`http://127.0.0.1:4000/`.
 
 
 
