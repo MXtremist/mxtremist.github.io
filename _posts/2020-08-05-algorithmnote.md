@@ -195,9 +195,41 @@ $E[h(X_1,X_2,...,X_k)]=h(E[X_1],E[X_2],...,E[X_k])$
 
 ## 求解递归方程
 
+#### 替换法
 
+*若函数平滑（即f(2n)=Θ(f(n))），则对于$\left \lceil  \right \rceil,\left \lfloor  \right \rfloor $操作可以忽略
 
+Guess and Prove
+$$
+e.g.T(n)=2T(n/2)+n \\
+Guess:T(n)=O(nlogn)\\
+Then\ need\ to\ prove:T(n)\le{cnlogn}\\
+根据归纳假设，我们有：T(n/2){\le}cn/2*log(n/2)，所以\\
+T(n)=2T(n/2)+n{\le}cnlog(n/2)+n{\le}cnlogn(取c{\ge}2)
+$$
+需要注意的是，在上述证明中，套用定义只需在某个n~0~后成立即可，上述例子对于T(1)就不成立
 
+#### 递归树
+
+分治递归的形式:$T(n)=aT(n/b)+f(n)$
+
+a：划分为a个子问题；b子问题规模为原先的1/b；f(n)：子问题划分与合并的代价
+
+举例：
+
+<img src="https://i.loli.net/2020/08/06/39KSHIMBLtdVRfi.png"/>
+
+#### Master定理
+
+对于:$T(n)=aT(n/b)+f(n)$，设$E=log_ba$
+$$
+case\ 1:f(n)=O(n^{E-\epsilon}),\epsilon>0,then\\
+T(n)=\Theta(n^E)，公比大于1，等于叶子层\\
+case\ 2:f(n)=\Theta(E),then\\
+T(n)=\Theta(f(n)logn)，公比等于1，等于层高*每层代价\\
+case\ 3:f(n)=\Omega(n^{E+\epsilon}),\epsilon>0,and\ \exist c<1,af(n/b)\le c(fn),then\\
+T(n)=\Theta(f(n))，公比小于1，等于根
+$$
 
 # 排序
 
