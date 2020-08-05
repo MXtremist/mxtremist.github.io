@@ -227,9 +227,10 @@ case\ 1:f(n)=O(n^{E-\epsilon}),\epsilon>0,then\\
 T(n)=\Theta(n^E)，公比大于1，等于叶子层\\
 case\ 2:f(n)=\Theta(E),then\\
 T(n)=\Theta(f(n)logn)，公比等于1，等于层高*每层代价\\
-case\ 3:f(n)=\Omega(n^{E+\epsilon}),\epsilon>0,and\ \exist c<1,af(n/b)\le c(fn),then\\
+case\ 3:f(n)=\Omega(n^{E+\epsilon}),\epsilon>0,and\ \exist c<1,af(n/b)\le cf(n),then\\
 T(n)=\Theta(f(n))，公比小于1，等于根
 $$
+Master定理并没有涵盖所有情况，例如$T(n)=\sqrt nT(\sqrt n)+n$，可以用替换法进行求解
 
 # 排序
 
