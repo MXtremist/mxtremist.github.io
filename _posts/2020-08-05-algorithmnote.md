@@ -594,15 +594,266 @@ def BinarySearch(A, left, right, key):
 
 > ARB 准红黑树：根节点为红色，其余特征满足红黑树
 
-- 唯一一个外部节点（同时为根节点）构成红黑树RB~0~
+- 唯一一个外部节点（同时为根节点）构成黑色高度为0的红黑树RB~0~
 - 对于h≥1，ARB~h~：根节点红色，左右子树均为RB~h-1~
 - 对于h≥1，RB~h~：根节点黑色，左右子树分别为一棵RB~h-1~或ARB~h-1~
 
+#### 平衡性
+
+对于T为RB~h~，有
+
+- T有不少于2^h^-1个内部黑色节点
+- T有不超过4^h^-1个内部节点
+- 任何黑色节点的普通高度至多为其黑色高度的2倍
+
+对于T为RB~h~，有
+
+- T有不少于2^h^-2个内部黑色节点
+- T有不超过4^h^/2-1个内部节点
+- 任何黑色节点的普通高度至多为其黑色高度的2倍
+
+定理：假设T有n个内部节点，其普通高度不超过2log(n+1)，查找代价始终为O(logn)
+
+
+
 ## 并查集
+
+### 基本操作
+
+并Union：将两个节点及其子树合并到同一类
+
+查Find：查询这个节点的祖先根节点
+
+并查集Uset用数组实现，内部为树结构
+
+### 加权并
+
+每次合并时，将节点数较少的树挂在节点数更多的树上，或者按秩，下面的代码为按数量
+
+```python
+def Union(x, y):
+    x=find(x)
+    y=find(y)
+    if x == y:
+        return 
+    if x.size()>=y.size():
+        uset[y]=x
+        x.size()+=y.size()
+    else:
+        uset[x]=y
+        y.size()+=x.size()
+```
+
+对于加权并，有k个节点的树其树高不超过$\left \lfloor logk \right \rfloor $（用数学归纳法证）
+
+### 路径压缩查
+
+将查询过程中遇到的节点均改为根节点的节点
+
+```python
+def Find(x):#递归版
+    if x != uset[x]:
+        uset[x]=Find(uset[x])
+    return uset[x]
+
+def Find(x):#非递归版
+    p=x
+    while uset[p]!=p:
+        p=uset[p]
+    while x != p:
+        uset[x],x = p,uset[x]
+    return p
+```
+
+### 性能
+
+对于有n个元素的并查集，执行m次操作，其最坏情况时间复杂度为O((m+n)log*n)≈O(m+n)
+
+log\*n是增长非常慢的函数，$log*(j)=\min\{i\ |\ H(i)\ge j\}$，其中H是以2为底的超指数函数
+
+
 
 # 图遍历
 
 ## DFS
+
+### 算法
+
+#### 有向图
+
+##### 框架
+
+颜色：白（未访问），灰（正在访问），黑：已结束访问
+
+```python
+def DFS_Wrapper(Graph):
+    for v in Graph:
+        Initialize(v)	#初始化节点v，缺省操作为将v颜色置为WHITE
+    for v in Graph:
+        if v.color == WHITE:
+            DFS(v)
+            
+def DFS(v):
+    ProcessNode(v)	#预处理节点v，缺省操作为将v颜色置为GRAY
+    for w in v.neighbor:
+        if w.color == WHITE:
+            ProcessEdge(edge<v,w>)	#预处理边vw
+            DFS(w)
+            BacktrackEdge(edge<v,w>)	#处理遍历w所收集到的信息
+        else:
+            CheckEdge(edge<v,w>)	#探测到已访问/正在访问节点的处理
+    PostorderProcessNode(v)	#对v遍历完成后的处理，缺省操作为将v颜色置为BLACK
+```
+
+##### 深度优先遍历树
+
+TE：连接即将访问的“孩子”，即探寻到白色子节点
+
+BE：连接“祖先”，即探寻到灰色节点
+
+DE：连接非TE连接的后代，即探寻到黑色节点且有祖先/后继关系
+
+CE：非上述情况，即探寻到黑色节点又无祖先/后继关系
+
+##### 活动区间
+
+除缺省操作外，在处理函数中增加以下步骤
+
+```python
+def Initialize(v):	#初始化节点v，缺省操作为将v颜色置为WHITE
+    v.parent = None
+    
+def ProcessNode(v, time):	#预处理节点v，缺省操作为将v颜色置为GRAY
+    time += 1
+    v.discoverTime = time
+    
+def ProcessEdge(edge<v,w>):	#预处理边vw
+    w.parent = v
+    
+def PostorderProcessNode(v, time):	#对v遍历完成后的处理，缺省操作为将v颜色置为BLACK
+    time += 1
+    v.finishTime = time
+```
+
+**活动区间**：active(v)=[v.discoverTime, v.finishTime]
+
+活动区间的包含关系即反映了节点在深度优先遍历树中的祖先/后继关系
+
+**定理**:
+
+1. w是v的后继节点$\iff$active(w)$\subseteq $active(v)，当w不为v时为真包含
+2. w与v无祖先/后继关系$\iff$active(w)和active(v)互不包含
+3. 对于边vw，有如下等价关系：
+   1. CE：active(w).finishTime < active(v).discoverTime
+   2. DE：$\exist$ x，active(w)$\subset $active(x)$\subset $active(v)
+   3. TE：$\nexists $ x，active(w)$\subset $active(x)$\subset $active(v)且active(w)$\subset $active(v)
+   4. BE：active(v)$\subset $active(w)
+4. 白色路径定理：v是w的祖先$\iff$在发现v的时刻，存在v到w的白色路径
+
+#### 无向图
+
+##### 深度优先遍历树
+
+与有向图相比，无向图：
+
+1. 不会有CE，因为如果y发现一个已访问且非祖先/后继关系x，那么访问到x时y是白色，应该会访问y
+2. BE：对于边vw，如果v是w的父节点，这种BE应剔除，因为在之前倍标记为了TE（二次遍历），故遇到灰色且非父节点则说明这条边是BE
+3. DE：如果发现边vw是DE，若w是白色，vw应该是TE，若灰色应该是BE，故只能是黑色，那么其在之前访问w是应该已经被标记为了BE（二次遍历）
+4. TE：与有向图类似，但是在无向图的深度优先遍历过程中为其做了定向
+
+##### 框架
+
+颜色：白（未访问），灰（正在访问），黑：已结束访问
+
+```python
+def DFS_UG(v, parent):
+    ProcessNode(v)	#预处理节点v，缺省操作为将v颜色置为GRAY
+    for w in v.neighbor:
+        if w.color == WHITE:
+            ProcessEdge(edge<v,w>)	#预处理边vw(TE)
+            DFS(w, v)
+            BacktrackEdge(edge<v,w>)	#处理遍历w所收集到的信息
+        elif w.color == GRAY:
+            if w != parent:
+            	CheckEdge(edge<v,w>)	#探测到已访问/正在访问节点的处理(vw是BE)
+        #else:
+        #    do nothing，是二次遍历
+    PostorderProcessNode(v)	#对v遍历完成后的处理，缺省操作为将v颜色置为BLACK
+```
+
+### 应用
+
+#### 有向图
+
+##### 拓扑排序
+
+DFS的顺序就应该是拓扑排序的排序，故可以增加如下操作：
+
+```python
+def DFS_Wrapper(Graph):	#初始化图，缺省操作为将节点置白色后循环对白色节点执行DFS
+    GlobalNum = Graph.size() + 1
+    
+def PostorderProcessNode(v, time):	#对v遍历完成后的处理，缺省操作为将v颜色置为BLACK   
+    GlobalNum -= 1
+    v.topoNum = GlobalNum
+```
+
+##### 关键路径
+
+**任务调度：**一组任务，之间的依附关系可以用有向图表示，节点为任务，权值为任务所需时间，边vw表示v依赖于w，即必须先完成w才能开始v。在任务调度问题中，我们认为有足够多的机器执行任务，故仅需要考虑任务间的依赖关系，关键路径即决定了所有任务完成所需的最短时间，它对任务优化有着指导意义：只有优化关键路径上的任务，才能减少整个时间
+
+**定义（最早开始时间est、最早结束时间eft）：**
+
+- 一个任务$a_i$不依赖于任何任务，则$est_i$ = 0
+- 一个任务$a_i$的$est_i$若已经被确定，则$eft_i$ = $est_i$+$l_i$
+- 一个任务$a_i$如果依赖于其他任务，则$est_i =\max\{eft_j\ |\ a_i\to a_j\}$ 
+
+**定义：（关键路径）：**任务调度中的关键路径是一组任务$v_0,v_1,...,v_k$满足：
+
+- 任务$v_0$不依赖于任何任务（尽头）
+- $\forall\ i \in [1,k],\ 有v_i\to v_{i-1},\ est_i = eft_{i-1}$
+- $v_k$的最早结束时间是最大的
+
+```python
+def CP_Wrapper(Graph):
+    for v in Graph:
+        v.color = WHITE, v.depend = None, v.est = 0 
+    fin = -1
+    for v in Graph:
+        if v.color == WHITE:
+            DFS(v)
+            if fin < v.eft:
+                fin = v.eft
+                finpos = v
+    while finpos is not None:#这里用逆序输出
+        print finpos.name
+        finpos = finpos.depend
+    
+def CriticalPath(v):
+    v.color = GRAY
+    for w in v.neighnbor:
+        if w.color = WHITE:
+            CriticalPath(w)
+        if w.eft >= v.est:
+            v.est = w.eft
+            v.depend = w
+    v.eft = v.est + v.l
+    v.color = BLACK
+```
+
+##### 强连通片
+
+**定义（强连通片、收缩图）：**如果有向图中任意两个节点相互可达，则为强连通图；将图G的每个强连通片收缩成点，强连通片之间的边（按照定义，边全是单向的）收缩为一条边，则为收缩图SCC
+
+**方法：**
+
+- 执行DFS，将尽头入栈
+- 将图转置
+- 依次出栈并作对于转置图的DFS，这次可达的点都为同一强连通片，因为按照栈的结构，每次拿出的节点若未被访问过，那么它就是在第一次DFS中，某次遍历的起始点，即转置图中的终点，它可达的点就均可达它
+
+#### 无向图
+
+**定义（k-点连通，k-边连通）：**
 
 ## BFS
 
