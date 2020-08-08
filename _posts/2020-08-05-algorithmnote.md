@@ -758,7 +758,7 @@ def PostorderProcessNode(v, time):	#对v遍历完成后的处理，缺省操作�
 
 1. 不会有CE，因为如果y发现一个已访问且非祖先/后继关系x，那么访问到x时y是白色，应该会访问y
 2. BE：对于边vw，如果v是w的父节点，这种BE应剔除，因为在之前倍标记为了TE（二次遍历），故遇到灰色且非父节点则说明这条边是BE
-3. DE：如果发现边vw是DE，若w是白色，vw应该是TE，若灰色应该是BE，故只能是黑色，那么其在之前访问w是应该已经被标记为了BE（二次遍历）
+3. DE：如果发现边vw是DE，若w是白色，vw应该是TE，若灰色应该是BE，故只能是黑色，那么其在之前访问w时应该已经被标记为了BE（二次遍历）
 4. TE：与有向图类似，但是在无向图的深度优先遍历过程中为其做了定向
 
 ##### 框架
@@ -865,9 +865,145 @@ def CriticalPath(v):
 
 v为割点$\iff$存在节点对w、x，v出现在w到x的所有路径上
 
-基于DFS：在一次DFS中，v不是根节点，则：v是割点$\iff$存在v的某棵子树，其中没有任何BE指向v的祖先节点
+**基于DFS的割点定义**：在一次DFS中，v不是根节点，则：v是割点$\iff$存在v的某棵子树，其中没有任何BE指向v的祖先节点
+
+根据如上定义，维护discoverTime和back两个变量，discoverTime的定义和之前相同，为节点v发现时的时间，back作如下变化：
+
+- 刚发现v时，v.back = v.discoverTime
+- 遍历过程中遇到一条由v指向u的BE：v.back = min{v.back, u.discoverTime}
+- 遍历v的子节点w结束，回退时：v.back = min(v.back, w.back)
+
+可以看到，v.back只会越来越小，它标记的其实是它（及其所有子节点）可以连通到的最早的祖先的discoverTime，由于它指向父亲的那条边在第一次访问时被标记为TE，所以可以忽略。这样的话，如果遍历v的子节点结束，回退时发现：w.back≥v.discoverTime，就说明它的子树中没有任何BE指向祖先，根据定义，v是割点
+
+```python
+def ArticulationPoint(v):
+    v.color = GRAY
+    time += 1
+    v.discoverTime = time
+    v.back = v.discoverTime
+    for w in v.neigbor:
+        if w.color = WHITE:
+            ArticulationPoint(w)
+            if w.back >= v.discoverTime:
+                ProcessAP(v)	#v是割点
+            v.back = min(v.back, w.back)
+        else:
+            if edge<v,w> is BE: #w是灰色且非父
+                v.back = min(v.back, w.discoverTime)
+    v.color = BLACK            
+```
+
+需要注意的是，按照定义，这个算法不适用于遍历树的根节点，其需要单独判断：若遍历结束时，root有至少2棵子遍历树，则root是割点，否则不是
+
+##### 寻找桥
+
+**基于DFS的桥定义**：TE uv是桥$\iff$v为根的所有遍历树的子树中没有BE指向v的祖先节点（但可以指向v）
+
+```python
+def Bridge(v):
+    v.color = GRAY
+    time += 1
+    v.discoverTime = time
+    v.back = v.discoverTime
+    for w in v.neigbor:
+        if w.color = WHITE:
+            Bridge(w)
+            if w.back > v.discoverTime: #w及其所有子树没有指向v及其祖先的
+                ProcessBridge(edge<v,w>)	#vw是桥
+            v.back = min(v.back, w.back)
+        else:
+            if edge<v,w> is BE: #w是灰色且非父
+                v.back = min(v.back, w.discoverTime)
+    v.color = BLACK      
+```
 
 ## BFS
+
+#### 算法框架
+
+在广度优先中，虽然依然有三种颜色，但是对于一个节点我们会将其处理完再访问其他节点，之后不会返回该节点
+
+广度优先中，灰色节点的意思更像是：在队列中，但还没有处理它
+
+广度优先遍历中，需要维护一个队列
+
+除了颜色，还可以为节点维护parent和dis信息，分别表示当前节点的父节点和当前节点到源节点的最短路径的长度，这些信息非常有用。利用parent回溯的路径就是源点到v的一条最短路径
+
+```python
+def BFS_Wrapper(Graph):
+    for v in G:
+        v.dis = float("inf")
+        v.parent = None
+        v.color = WHITE
+    for v in G:
+        if v.color = WHITE:
+            BFS(v)
+    
+def BFS(v):
+    que = Queue.Queue()
+    v.color = GRAY
+    v.dis = 0
+    que.put(v)
+    while not que.empty():
+        w = que.get()
+        for x in w.neighbor:
+            if x.color = WHITE:
+                x.color = GRAY
+                x.parent = w
+                x.dis = w.dis + 1
+                que.put(x)
+        ProcessNode(w)	#结束w的处理前做的操作
+        w.color = BLACK
+```
+
+广度优先中，队列具有如下性质：
+
+若队列元素按顺序为$v_1, v_2,\ ...\ ,v_k$，则有：
+
+- $v_i.dis \le v_{i+1}.dis$
+- $v_k.dis \le v_1.dis + 1$
+
+第二点是由于广度优先是按“层级”的，只有相同的dis的节点访问完，才会访问dis+1的节点，dis+2的才有机会进入队列
+
+#### 广度优先遍历树
+
+##### 有向图
+
+TE：遍历u时发现白色邻居v，则uv为TE
+
+BE：遍历u时发现黑色邻居v，且v是u的祖先，则uv为BE，且有$v.dis< u.dis$
+
+DE：不可能出现，因为一个节点会处理完
+
+CE：遍历u时发现非白色邻居v，且v不是u的祖先，则uv是CE，且有$v.dis \le u.dis+1$
+
+##### 无向图
+
+TE：类似有向图
+
+BE：不存在，因为在那之前会被判断为TE
+
+DE：不存在，类似有向图
+
+CE：遍历u时发现灰色邻居v，则uv为CE，且$u.dis\le v.dis \le u.dis+1$
+
+在无向图中，发现黑色节点就意味着是自己的父亲
+
+#### 应用
+
+##### 判断二分图
+
+**定义（二分图）**将无向图G=<V,E>划分的顶点划分为$V_!,V_2$，若图中所有边均满足一个顶点在V1，一个顶点在V2，则称之为二分图，也就是说，划分内部没有边相连，或者说这个图是二着色的，即可以用两种颜色染色，使得每个点和其邻居颜色不同
+
+算法过程为：在节点进队前，给当前节点染和父节点不同的颜色，在遇到非白色节点时判断颜色是否相同，相同则不是二分图，结束算法，直到结束也没遇到则是二分图
+
+##### 寻找k度子图
+
+**定义（k度子图）**无向图G的子图H满足，每个顶点的度均不低于k
+
+算法思路：先看所有节点，将度小于k的进队，如果度均大于k，则G本身就是k度子图，否则，按照BFS的顺序将这些节点出队，删除节点和它的边，并将与其相连的节点度-1、，若新节点度小于k则进队
+
+算法结束后剩余的这些边和其顶点构成k度子图
 
 # 图优化
 
