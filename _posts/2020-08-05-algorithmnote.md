@@ -787,6 +787,8 @@ def DFS_UG(v, parent):
 
 ##### 拓扑排序
 
+可以拓扑排序$\iff$有向无环图DAG
+
 DFS的顺序就应该是拓扑排序的排序，故可以增加如下操作：
 
 ```python
@@ -1009,9 +1011,197 @@ CE：遍历u时发现灰色邻居v，则uv为CE，且$u.dis\le v.dis \le u.dis+1
 
 ## 最小生成树算法
 
+n：点的个数；m：边的个数
+
+对于稠密图，大致认为O(m)=O(n^2^)，对于稀疏图，O(m)=O(n)
+
+### Prim算法
+
+#### 策略
+
+贪心算法，每次选择和当前局部MST相连的边中权值最小的，然后更新
+
+用优先队列存放
+
+算法框架如下
+
+```python
+def Prim(Graph):
+    pq=Queue.PriorityQueue()
+    MST=[]
+    for v in Graph:
+        v.state  =UNSEEN
+        v.candidateEdge = None
+        v.weight = float("inf")
+    s=Graph[0]	#随意挑选一个初始节点
+    s.state = SEEN
+    pq.put(-float("inf"),s)#将其权值设为0
+    while not pq.empty():
+        v = pq.get()
+        MST += v.candidateEdge	#将边放入MST中
+        UpdateFringe(v, pq)	#更新信息
+    
+def UpdateFringe(v, pq):
+    for w in v.nieghbor:
+        newWeight = edge<v,w>.weight
+        if w.state = UNSEEN:
+            w.state = SEEN
+            w.candidateEdge= edge<v,w>
+            w.weight = newWeight
+            pq.put(newWeight, w)
+         else:
+            if newWeight < w.weight:	#发现了更小的边，需要更新
+                w.weight = newWeight
+                pq.decreaseKey(w,w.weight)
+```
+
+#### 分析
+
+##### 正确性分析
+
+**最小生成树性质** 给定图G的生成树T，T是最小生成树$\iff$T满足最小生成树性质，：对于任意不在T中的边e，$T\cup \{e\}$含有一个环，且e是环中权值最大的边
+
+证明使用数学归纳法+反证（假设Prim算法某次选的边构造成T^k^，新加的边会成环（Prim算法下肯定选出来的是生成树），反证法证明这个边是环中权值最大的）
+
+##### 性能分析
+
+分析算法过程，其代价为O(n\*(进入队列+取出队列)+m\*(更新队列))
+
+基于堆的优先队列，其复杂度为O((m+n)logn)
+
+### Kruskal算法
+
+#### 策略
+
+每次选权值最小的边，若这个边的两个端点未处于当前MST，则将这个边加入
+
+使用并查集判断是否处于同一个MST
+
+```python
+def Kruskal(Graph):
+    uset.init(Graph.V)
+    Edge = Graph.E
+    MST = []
+    sort(Edge)
+    for e in Edge:
+        if uset.Find(e.v) != uset.Find(e.u):
+            MST += e
+            uset.Union(e.v, e.u)
+```
+
+#### 分析
+
+##### 正确性分析
+
+设某一步选择了边e，e不在任何一个MST中，设有MST T，则$T \cup \{e\}$成环，证明：(1). 由于最小生成树性质，e是环上最大的边，(2). 由于Kruskal算法，环上有权值大于等于e的边（否则Kruskal不会选e）因此，有权值等于e的边，把它去掉、加入e，形成了新的MST
+
+##### 性能分析
+
+O(边排序+m次Find和Union)
+
+对于高效的并查集，和基于比较的排序，可以认为其效率为O(mlogm + n)或O(mlogm)或O(mlogn)
+
+(O(logm) = O(logn))
+
+### MST的贪心构造框架MCE
+
+切：将点划分两半
+
+跨越切的边：边的两个顶点分别属于两半
+
+MCE：跨越切的最小权值边
+
+**定理** 对于某个边e，若存在某个切使其为MCE，则e属于某棵MST
+
+MCE角度下的Prim算法：Prim算法每次选择一条MCE（切的一边是已有的点，另一边是剩下的点）
+
+MCE角度下的Kruskal算法：每次选择一条MCE，将权值更小的避开，使其位于某个点集内部
+
 ## 最短路径
 
+### 给定源点的最短路径
+
+#### Dijkstra算法
+
+每次选当前到源点的最短路的点，更新其邻居到源点的距离
+
+##### 正确性
+
+需要每条边的权值都是非负的
+
+##### 性能分析
+
+若使用堆作为优先队列，则为O((n+m)logn)
+
+### DAG的给定源点的最短路径
+
+有向无环图→可以拓扑排序
+
+```python
+def DAGG_SSSP(Graph, s):	#s是给定的源点
+    for v in Graph:
+        v.dis = float("inf")
+    s.dis = 0
+    get topological order into L
+    for v in L:
+        if v is not s:
+            v.dis = min(u.dis+uv.weight for u in v.parent) 
+```
+
+递归求解子问题
+
+在拓扑排序中B和C都在其前面且指向D，由于其无环，D到S的最短路径就依赖于子问题B和C到S的最短路径
+
+这一模板同样可以求最长路径等
+
+### 所有点对间的最短路径
+
+TODO
+
 ## 贪心
+
+### 贪心遍历框架BestFS
+
+每个节点分状态：
+
+- Fresh	尚未涉及的节点
+- Fringe	候选节点
+- Finished	已完成的节点
+
+框架如下：
+
+```python
+def BestFirstSearch():
+    Initialize priorityqueue Fringe
+    Insert start node s to Fringe
+    while Fringe is not empty:
+        v = Fringe.ExtractMin()	#取出优先级最高的候选节点并维护优先队列结构
+        ProcessNode(v)
+        UpdateFringe(v, Fringe)
+
+def UodateFringe(v, Fringe):
+    for w in v.neighbor:
+        if w is Fresh:
+            Set the priority of w
+            Fringe.Insert(w, weight)	#加入队列
+        elif w is Fringe:
+            update the priority of w
+            Fringe.DecreaceKey(w, newweight)	#更新权值（如果需要的话）
+```
+
+代价为O(n\*(ExtractMin + Insert) + m\*DecreaceKey)
+
+### 应用
+
+#### 相容任务调度
+
+与之前的关键路径不同，这里的任务是互斥的，每个任务有开始时间和完成时间。问题的要求是找出最大的相容任务集
+
+方法：选择“最早结束任务”的。将任务按完成时间先后排序，然后从前往后扫描，如果与已选择的冲突就忽略，否则就选择，其复杂度为O(nlogn)
+
+#### Huffman编码
+
+每次挑选频率最低的合成一棵树，树的权值为频率之和，不断操作直到形成最终的2-tree，称之为Huffman tree，其复杂度为O(nlogn)
 
 ## 动态规划
 
@@ -1023,4 +1213,4 @@ CE：遍历u时发现灰色邻居v，则uv为CE，且$u.dis\le v.dis \le u.dis+1
 
 
 
-最后修改于2020-8-7
+最后修改于2020-8-9
