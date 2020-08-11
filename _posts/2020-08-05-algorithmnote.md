@@ -1316,7 +1316,7 @@ NP且NP难
 
 ## NP完全性的证明
 
-证明QNP完全$\iff$ 证明一个NP完全问题$P\le {_PQ}$
+证明Q是NP完全$\iff$ 证明一个NP完全问题$P\le {_PQ}$+证明Q是NP
 
 
 
