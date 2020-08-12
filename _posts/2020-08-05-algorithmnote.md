@@ -1030,7 +1030,7 @@ def Prim(Graph):
     pq=Queue.PriorityQueue()
     MST=[]
     for v in Graph:
-        v.state  =UNSEEN
+        v.state = UNSEEN
         v.candidateEdge = None
         v.weight = float("inf")
     s=Graph[0]	#随意挑选一个初始节点
